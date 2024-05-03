@@ -11,6 +11,7 @@ import {
 	Link,
 } from "@nextui-org/react";
 import { ThemeSwitcher } from "../Button/ThemeSwitcher";
+import { UserDetail } from "../UserDetail/UserDetail";
 
 export function Navigationbar() {
 	const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -27,7 +28,7 @@ export function Navigationbar() {
 		"Log Out",
 	];
 	return (
-		<Navbar onMenuOpenChange={setIsMenuOpen}>
+		<Navbar maxWidth="full" onMenuOpenChange={setIsMenuOpen}>
 			<NavbarContent className="sm:hidden" justify="start">
 				<NavbarMenuToggle />
 				<NavbarBrand>
@@ -35,6 +36,7 @@ export function Navigationbar() {
 				</NavbarBrand>
 			</NavbarContent>
 			<NavbarContent className="hidden sm:flex">
+				<UserDetail />
 				<NavbarBrand>
 					<p className="font-bold text-inherit">ねんぴはかる！</p>
 				</NavbarBrand>
@@ -43,6 +45,7 @@ export function Navigationbar() {
 				</NavbarItem>
 			</NavbarContent>
 			<NavbarMenu>
+				<UserDetail />
 				{menuItems.map((item, index) => (
 					<NavbarMenuItem key={item}>
 						<Link
