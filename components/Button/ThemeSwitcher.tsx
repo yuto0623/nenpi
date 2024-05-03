@@ -2,6 +2,8 @@
 
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import { SunIcon, MoonIcon } from "@heroicons/react/24/solid";
+import { Switch } from "@nextui-org/react";
 
 export function ThemeSwitcher() {
 	const [mounted, setMounted] = useState(false);
@@ -11,21 +13,26 @@ export function ThemeSwitcher() {
 		setMounted(true);
 	}, []);
 
-	const handleSetTheme = () => {
-		setTheme(theme === "light" ? "dark" : "light");
-	};
-
 	if (!mounted) return null;
 
 	return (
 		<div>
-			<button
-				type="button"
-				className="block p-1 rounded-full"
-				onClick={handleSetTheme}
-			>
-				{theme === "light" ? <p>dark</p> : <p>light</p>}
-			</button>
+			<Switch
+				size="md"
+				color="secondary"
+				aria-label="テーマの切り替え"
+				isSelected={theme === "light"}
+				onValueChange={(selected) => {
+					setTheme(selected ? "light" : "dark");
+				}}
+				thumbIcon={({ isSelected, className }) =>
+					isSelected ? (
+						<SunIcon className={`${className}`} />
+					) : (
+						<MoonIcon className={className} />
+					)
+				}
+			/>
 		</div>
 	);
 }

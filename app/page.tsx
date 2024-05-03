@@ -10,12 +10,13 @@ import {
 	useDisclosure,
 } from "@nextui-org/react";
 import { ThemeSwitcher } from "@/components/Button/ThemeSwitcher";
+import { Navigationbar } from "@/components/Navigationbar/Navigationbar";
 
 export default function Home() {
 	const { isOpen, onOpen, onOpenChange } = useDisclosure();
 	return (
 		<main>
-			<ThemeSwitcher />
+			<Navigationbar />
 			<Button onPress={onOpen}>Open Modal</Button>
 			<Modal isOpen={isOpen} onOpenChange={onOpenChange}>
 				<ModalContent>
