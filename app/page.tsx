@@ -5,18 +5,20 @@ import { Button, ButtonGroup } from "@nextui-org/button";
 import { Navigationbar } from "@/components/Navigationbar/Navigationbar";
 import { useSession } from "next-auth/react";
 import Login from "@/components/Login/Login";
-import prisma from "@/lib/PrismaClient";
+import axios from "axios";
 
 export default function Home() {
 	const { data: session, status } = useSession();
 
 	const onSubmit = async () => {
-		try {
-			const res = await fetch("/api/test").then((res) => res.json());
-			console.log(res);
-		} catch (error) {
-			console.log(error);
-		}
+		const body = {
+			id: session?.user?.id,
+		};
+		const json = JSON.stringify(body);
+		const response = await axios.post("/api/user", json, {
+			headers: { "Content-Type": "application/json" },
+		});
+		console.log(response.data);
 	};
 
 	return (
