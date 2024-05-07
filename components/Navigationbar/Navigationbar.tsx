@@ -22,13 +22,13 @@ export function Navigationbar() {
 			<NavbarContent className="sm:hidden" justify="start">
 				<NavbarMenuToggle />
 				<NavbarBrand>
-					<p className="font-bold text-inherit">ねんぴはかる！</p>
+					<p className="font-bold text-inherit">test</p>
 				</NavbarBrand>
 			</NavbarContent>
 			<NavbarContent className="hidden sm:flex">
 				<UserDetail />
 				<NavbarBrand>
-					<p className="font-bold text-inherit">ねんぴはかる！</p>
+					<p className="font-bold text-inherit">test</p>
 				</NavbarBrand>
 				<NavbarItem>
 					<Logout />
