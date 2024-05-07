@@ -6,13 +6,18 @@ import {
 	CardBody,
 	CardFooter,
 	Button,
+	Spinner,
 } from "@nextui-org/react";
 
 export default function Login() {
 	const { data: session, status } = useSession();
 
 	if (status === "loading") {
-		return <div>Loading...</div>;
+		return (
+			<div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+				<Spinner label="Loading..." />
+			</div>
+		);
 	}
 
 	if (status !== "authenticated") {
