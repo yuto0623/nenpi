@@ -12,21 +12,11 @@ import {
 } from "@nextui-org/react";
 import { ThemeSwitcher } from "../Button/ThemeSwitcher";
 import { UserDetail } from "../UserDetail/UserDetail";
+import Logout from "../Logout/Logout";
 
 export function Navigationbar() {
 	const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-	const menuItems = [
-		"Profile",
-		"Dashboard",
-		"Activity",
-		"Analytics",
-		"System",
-		"Deployments",
-		"My Settings",
-		"Team Settings",
-		"Help & Feedback",
-		"Log Out",
-	];
+
 	return (
 		<Navbar maxWidth="full" onMenuOpenChange={setIsMenuOpen}>
 			<NavbarContent className="sm:hidden" justify="start">
@@ -46,24 +36,9 @@ export function Navigationbar() {
 			</NavbarContent>
 			<NavbarMenu>
 				<UserDetail />
-				{menuItems.map((item, index) => (
-					<NavbarMenuItem key={item}>
-						<Link
-							className="w-full"
-							color={
-								index === 2
-									? "warning"
-									: index === menuItems.length - 1
-										? "danger"
-										: "foreground"
-							}
-							href="#"
-							size="lg"
-						>
-							{item}
-						</Link>
-					</NavbarMenuItem>
-				))}
+				<NavbarMenuItem>
+					<Logout />
+				</NavbarMenuItem>
 				<ThemeSwitcher />
 			</NavbarMenu>
 		</Navbar>
