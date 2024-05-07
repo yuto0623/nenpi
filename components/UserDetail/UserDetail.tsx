@@ -1,16 +1,22 @@
+"use client";
 import React from "react";
 import { User } from "@nextui-org/react";
+import { useSession } from "next-auth/react";
+
 
 export function UserDetail() {
+	const { data: session, status } = useSession();
 	return (
 		<div>
-			<User
-				name="yuto shintani"
-				description="走行距離 1,000km"
+			{status === "authenticated" ? (
+				<User
+				name={session.user?.name}
+				description={session.expires}
 				avatarProps={{
-					src: "https://i.pravatar.cc/150?u=a04258114e29026702d",
+					src: `${session.user?.image}`,
 				}}
-			/>
-		</div>
+				/>
+			) : null}
+			</div>
 	);
 }

@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { Providers } from "./providers";
+import { Providers } from "@/providers/providers";
+import NextAuthProvider from "@/providers/NextAuth";
 
 export const metadata: Metadata = {
 	title: "Create Next App",
@@ -19,7 +20,9 @@ export default function RootLayout({
 				<link rel="manifest" href="/manifest.json" />
 			</head>
 			<body>
-				<Providers>{children}</Providers>
+				<NextAuthProvider>
+					<Providers>{children}</Providers>
+				</NextAuthProvider>
 			</body>
 		</html>
 	);
