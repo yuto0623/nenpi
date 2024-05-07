@@ -31,6 +31,9 @@ export function Navigationbar() {
 					<p className="font-bold text-inherit">ねんぴはかる！</p>
 				</NavbarBrand>
 				<NavbarItem>
+					<Logout />
+				</NavbarItem>
+				<NavbarItem>
 					<ThemeSwitcher />
 				</NavbarItem>
 			</NavbarContent>

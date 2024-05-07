@@ -1,5 +1,12 @@
 import React from "react";
 import { useSession, signIn } from "next-auth/react";
+import {
+	Card,
+	CardHeader,
+	CardBody,
+	CardFooter,
+	Button,
+} from "@nextui-org/react";
 
 export default function Login() {
 	const { data: session, status } = useSession();
@@ -10,15 +17,17 @@ export default function Login() {
 
 	if (status !== "authenticated") {
 		return (
-			<div>
-				<p>あなたはログインしていません</p>
-				<button
-					type="button"
-					onClick={() => signIn("google", {}, { prompt: "login" })}
-				>
-					Googleでログイン
-				</button>
-			</div>
+			<Card className="w-2/3 max-w-80 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+				<CardHeader>Login</CardHeader>
+				<CardBody>
+					<Button
+						type="button"
+						onClick={() => signIn("google", {}, { prompt: "login" })}
+					>
+						Googleでログイン
+					</Button>
+				</CardBody>
+			</Card>
 		);
 	}
 
