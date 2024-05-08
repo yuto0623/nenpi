@@ -49,7 +49,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
-  testtext      String?
+  mileage       Int?
 }
 
 model VerificationToken {
