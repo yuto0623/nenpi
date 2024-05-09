@@ -57,7 +57,13 @@ export default function Home() {
 					<form action={onSubmit}>
 						<Input name="mileage" />
 						<Button type="submit">送信</Button>
-						{user ? <p>{user.mileage}</p> : <Spinner />}
+						{user.mileage ? (
+							<p>{user.mileage}</p>
+						) : (
+							<div>
+								<Spinner />
+							</div>
+						)}
 					</form>
 				</>
 			) : (
