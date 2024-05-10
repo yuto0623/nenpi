@@ -13,6 +13,7 @@ import {
 import { ThemeSwitcher } from "../Button/ThemeSwitcher";
 import { UserDetail } from "../UserDetail/UserDetail";
 import Logout from "../Logout/Logout";
+import Settings from "../Settings/Settings";
 
 export function Navigationbar() {
 	const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -31,6 +32,9 @@ export function Navigationbar() {
 					<p className="font-bold text-inherit">test</p>
 				</NavbarBrand>
 				<NavbarItem>
+					<Settings />
+				</NavbarItem>
+				<NavbarItem>
 					<Logout />
 				</NavbarItem>
 				<NavbarItem>
@@ -40,9 +44,14 @@ export function Navigationbar() {
 			<NavbarMenu>
 				<UserDetail />
 				<NavbarMenuItem>
+					<Settings />
+				</NavbarMenuItem>
+				<NavbarMenuItem>
 					<Logout />
 				</NavbarMenuItem>
-				<ThemeSwitcher />
+				<NavbarMenuItem>
+					<ThemeSwitcher />
+				</NavbarMenuItem>
 			</NavbarMenu>
 		</Navbar>
 	);
