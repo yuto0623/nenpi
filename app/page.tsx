@@ -7,6 +7,7 @@ import { useSession } from "next-auth/react";
 import Login from "@/components/Login/Login";
 import axios from "axios";
 import { Spinner } from "@nextui-org/react";
+import BottomBar from "@/components/BottomBar/BottomBar";
 
 export default function Home() {
 	const { data: session, status } = useSession();
@@ -55,7 +56,7 @@ export default function Home() {
 				<>
 					<Navigationbar />
 					<form action={onSubmit}>
-						<Input name="mileage" />
+						<Input name="mileage" isRequired />
 						<Button type="submit">送信</Button>
 						{user.mileage ? (
 							<p>{user.mileage}</p>
@@ -65,6 +66,7 @@ export default function Home() {
 							</div>
 						)}
 					</form>
+					<BottomBar />
 				</>
 			) : (
 				<Login />

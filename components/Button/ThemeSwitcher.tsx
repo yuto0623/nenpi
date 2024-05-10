@@ -19,7 +19,7 @@ export function ThemeSwitcher() {
 		<div>
 			<Switch
 				size="md"
-				color="secondary"
+				color={"warning"}
 				aria-label="テーマの切り替え"
 				isSelected={theme === "light"}
 				onValueChange={(selected) => {
