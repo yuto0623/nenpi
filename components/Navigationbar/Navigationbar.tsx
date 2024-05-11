@@ -22,22 +22,26 @@ export function Navigationbar() {
 		<Navbar maxWidth="full" onMenuOpenChange={setIsMenuOpen}>
 			<NavbarContent className="sm:hidden" justify="start">
 				<NavbarMenuToggle />
-				<NavbarBrand>
+				{/* <NavbarBrand>
 					<p className="font-bold text-inherit">test</p>
-				</NavbarBrand>
+				</NavbarBrand> */}
 			</NavbarContent>
 			<NavbarContent className="hidden sm:flex">
 				<Settings>
 				<UserDetail />
 				</Settings>
-				<NavbarBrand>
+				{/* <NavbarBrand>
 					<p className="font-bold text-inherit">test</p>
-				</NavbarBrand>
+				</NavbarBrand> */}
 			</NavbarContent>
 			<NavbarMenu>
 				<UserDetail />
 				<NavbarMenuItem>
-					<Settings>Settings</Settings>
+					{/* <Settings>Settings</Settings> */}
+					<div className="flex items-center text-sm">
+									ナイトモード：
+									<ThemeSwitcher />
+					</div>
 				</NavbarMenuItem>
 				<NavbarMenuItem>
 					<Logout />
