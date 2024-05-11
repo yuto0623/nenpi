@@ -9,9 +9,7 @@ export default function Logout() {
 	if (status === "authenticated") {
 		return (
 			<div>
-				<button type="button" onClick={() => signOut()}>
-					<Link color="danger">ログアウト</Link>
-				</button>
+					<Link className="cursor-pointer" color="danger" onClick={() => signOut()}>ログアウト</Link>
 			</div>
 		);
 	}
