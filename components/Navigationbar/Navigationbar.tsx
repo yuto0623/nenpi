@@ -27,18 +27,17 @@ export function Navigationbar() {
 				</NavbarBrand>
 			</NavbarContent>
 			<NavbarContent className="hidden sm:flex">
+				<Settings>
 				<UserDetail />
+				</Settings>
 				<NavbarBrand>
 					<p className="font-bold text-inherit">test</p>
 				</NavbarBrand>
-				<NavbarItem>
-					<Settings />
-				</NavbarItem>
 			</NavbarContent>
 			<NavbarMenu>
 				<UserDetail />
 				<NavbarMenuItem>
-					<Settings />
+					<Settings>Settings</Settings>
 				</NavbarMenuItem>
 				<NavbarMenuItem>
 					<Logout />

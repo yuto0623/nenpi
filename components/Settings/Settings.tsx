@@ -12,13 +12,17 @@ import {
 import { ThemeSwitcher } from "../Button/ThemeSwitcher";
 import Logout from "../Logout/Logout";
 
-export default function Settings() {
+export default function Settings({
+	children,
+}: Readonly<{
+	children: React.ReactNode;
+}>) {
 	const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
 	return (
 		<>
 			<Link color="foreground" onPress={onOpen} className="cursor-pointer">
-				Settings
+				{children}
 			</Link>
 			<Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="center">
 				<ModalContent>
