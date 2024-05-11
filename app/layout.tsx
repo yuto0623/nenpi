@@ -3,6 +3,10 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/providers/providers";
 import NextAuthProvider from "@/providers/NextAuth";
+import { Navigationbar } from "@/components/Navigationbar/Navigationbar";
+import BottomBar from "@/components/BottomBar/BottomBar";
+import { NextUiProvider } from "@/providers/NextUiProviders";
+
 
 export const metadata: Metadata = {
 	title: "Create Next App",
@@ -21,7 +25,13 @@ export default function RootLayout({
 			</head>
 			<body>
 				<NextAuthProvider>
-					<Providers>{children}</Providers>
+					<Providers>
+						<NextUiProvider>
+						<Navigationbar />
+						{children}
+							<BottomBar />
+						</NextUiProvider>
+					</Providers>
 				</NextAuthProvider>
 			</body>
 		</html>

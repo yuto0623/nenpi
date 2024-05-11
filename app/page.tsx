@@ -41,8 +41,6 @@ export default function Home() {
 	return (
 		<main>
 			{status === "authenticated" ? (
-				<>
-					<Navigationbar />
 					<form action={onSubmit}>
 						<Input name="mileage" isRequired />
 						<Button type="submit">送信</Button>
@@ -54,8 +52,6 @@ export default function Home() {
 							</div>
 						)}
 					</form>
-					<BottomBar />
-				</>
 			) : (
 				<Login />
 			)}
