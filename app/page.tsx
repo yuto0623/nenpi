@@ -8,46 +8,34 @@ import Login from "@/components/Login/Login";
 import axios from "axios";
 import { Spinner } from "@nextui-org/react";
 import BottomBar from "@/components/BottomBar/BottomBar";
+import type { Settings } from "@prisma/client";
 
 export default function Home() {
 	const { data: session, status } = useSession();
-	const [user, setUser] = useState({
-		id: "",
-		name: "",
-		email: "",
-		image: "",
-		mileage: null,
-	});
+	const [userSettings, setUserSettings] = useState<Settings>();
 
-	const getUserDetail = async () => {
-		// const body = {
-		// 	id: session?.user?.id,
-		// };
+	const getUserSettings = async () => {
 		const id = session?.user?.id;
 		if (!id) return;
-		const response = await axios.get("/api/user", {
-			params: { id },
-			// headers: { "Content-Type": "application/json" },
-		});
+		const response = await axios.get(`/api/settings/${id}`);
 		// console.log(response.data);
-		setUser(response.data);
+		setUserSettings(response.data);
 	};
 
 	useEffect(() => {
-		if (!user.mileage) {
-			getUserDetail();
+		if (!userSettings) {
+			getUserSettings();
 		}
-	}, [getUserDetail, user]);
+	}, [getUserSettings, userSettings]);
 
 	const onSubmit = async (formData: FormData) => {
-		if (!user) return;
+		if (!userSettings) return;
 		const putBody = {
-			id: user.id,
 			mileage: formData.get("mileage"),
 		};
-		const response = await axios.put("/api/user", JSON.stringify(putBody));
+		const response = await axios.patch(`/api/settings/${userSettings.userId}`, JSON.stringify(putBody));
 		// console.log(response.data);
-		getUserDetail();
+		getUserSettings();
 	};
 
 	return (
@@ -58,8 +46,8 @@ export default function Home() {
 					<form action={onSubmit}>
 						<Input name="mileage" isRequired />
 						<Button type="submit">送信</Button>
-						{user.mileage ? (
-							<p>{user.mileage}</p>
+						{userSettings ? (
+							<p>{userSettings.mileage}</p>
 						) : (
 							<div>
 								<Spinner />

@@ -34,12 +34,6 @@ export function Navigationbar() {
 				<NavbarItem>
 					<Settings />
 				</NavbarItem>
-				<NavbarItem>
-					<Logout />
-				</NavbarItem>
-				<NavbarItem>
-					<ThemeSwitcher />
-				</NavbarItem>
 			</NavbarContent>
 			<NavbarMenu>
 				<UserDetail />
@@ -48,9 +42,6 @@ export function Navigationbar() {
 				</NavbarMenuItem>
 				<NavbarMenuItem>
 					<Logout />
-				</NavbarMenuItem>
-				<NavbarMenuItem>
-					<ThemeSwitcher />
 				</NavbarMenuItem>
 			</NavbarMenu>
 		</Navbar>

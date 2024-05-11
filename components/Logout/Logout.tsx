@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { useSession, signOut } from "next-auth/react";
 import { Link } from "@nextui-org/react";
@@ -9,7 +10,7 @@ export default function Logout() {
 		return (
 			<div>
 				<button type="button" onClick={() => signOut()}>
-					<Link color="foreground">ログアウト</Link>
+					<Link color="danger">ログアウト</Link>
 				</button>
 			</div>
 		);

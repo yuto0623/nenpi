@@ -9,6 +9,8 @@ import {
 	useDisclosure,
 	Link,
 } from "@nextui-org/react";
+import { ThemeSwitcher } from "../Button/ThemeSwitcher";
+import Logout from "../Logout/Logout";
 
 export default function Settings() {
 	const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -26,7 +28,11 @@ export default function Settings() {
 								Settings
 							</ModalHeader>
 							<ModalBody>
-								<p>Modal Body</p>
+								<div className="flex">
+									ナイトモード：
+									<ThemeSwitcher />
+								</div>
+								<Logout />
 							</ModalBody>
 							<ModalFooter>
 								<p>Modal Footer</p>
