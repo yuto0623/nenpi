@@ -3,11 +3,14 @@ import type { NextRequest, NextResponse } from "next/server";
 
 
 
-export async function GET(req: NextRequest, res: NextResponse) {
+export async function GET(req: NextRequest, res: NextResponse,
+  { params }: { params: { id: string } }
+) {
   const prisma = new PrismaClient();
   // const body = await req.json();
   try {
-    const id = await req.nextUrl.searchParams.get("id");
+    // const id = await req.nextUrl.searchParams.get("id");
+    const id = await params.id;
     if (!id) {
       return new Response(JSON.stringify({ error: "ID is required" }), { status: 400 });
     }
