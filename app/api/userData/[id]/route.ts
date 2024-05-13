@@ -14,18 +14,18 @@ export async function GET(
       id: id
     },
     include: {
-      settings: true
+      userData: true
     }
   })
-  if (!response?.settings[0]) {
-    const response = await prisma.settings.create({
+  if (!response?.userData[0]) {
+    const response = await prisma.userData.create({
       data: {
         userId: id
       }
     })
     return new Response(JSON.stringify(response))
   }
-  return new Response(JSON.stringify(response?.settings[0]))
+  return new Response(JSON.stringify(response?.userData[0]))
 }
 
 
@@ -36,20 +36,20 @@ export async function PATCH(
   const prisma = new PrismaClient();
   const id = params.id;
   const body = await Request.json();
-  const response = await prisma.settings.update({
+  const response = await prisma.userData.update({
     where: {
       userId: id
     },
     data: {
-      // mileage: Number(body.mileage)
+      mileage: Number(body.mileage)
     }
   })
   // console.log(response)
   if (!response) {
-    const response = await prisma.settings.create({
+    const response = await prisma.userData.create({
       data: {
         userId: id,
-        // mileage: Number(body.mileage)
+        mileage: Number(body.mileage)
       }
     })
     return new Response(JSON.stringify(response))
