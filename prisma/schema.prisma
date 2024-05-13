@@ -70,7 +70,8 @@ model Settings {
 model UserData {
   id             Int     @id @default(autoincrement())
   mileage        Int     @default(0)
-  prices         Int     @default(0)
+  gas            Int     @default(0)
+  gasPrice       Int     @default(0)
   fuelEfficiency Int     @default(0)
   user           User?   @relation(fields: [userId], references: [id])
   userId         String? @unique

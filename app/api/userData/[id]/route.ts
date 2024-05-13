@@ -41,7 +41,9 @@ export async function PATCH(
       userId: id
     },
     data: {
-      mileage: Number(body.mileage)
+      mileage: Number(body.mileage),
+      gasPrice: Number(body.gasPrice),
+      gas: Number(body.gas)
     }
   })
   // console.log(response)
@@ -49,7 +51,9 @@ export async function PATCH(
     const response = await prisma.userData.create({
       data: {
         userId: id,
-        mileage: Number(body.mileage)
+        mileage: Number(body.mileage),
+        gasPrice: Number(body.gasPrice),
+        gas: Number(body.gas)
       }
     })
     return new Response(JSON.stringify(response))

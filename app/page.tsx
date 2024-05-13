@@ -9,7 +9,7 @@ import axios from "axios";
 import { Spinner, Card, CardHeader, CardBody } from "@nextui-org/react";
 import BottomBar from "@/components/BottomBar/BottomBar";
 import type { Settings, UserData } from "@prisma/client";
-import MileageSubmit from "@/components/MileageSubmit/MileageSubmit";
+import UserDataSubmit from "@/components/UserDataSubmit/UserDataSubmit";
 
 export default function Home() {
 	const { data: session, status } = useSession();
@@ -57,14 +57,16 @@ export default function Home() {
 					<main className="px-4">
 						{page === "home" ? (
 							<div>
-								<MileageSubmit
+								<UserDataSubmit
 									userData={userData}
 									getUserData={getUserData}
 									setUserData={setUserData}
 								/>
 								{userData ? (
 									<>
-										<p>{userData.mileage}</p>
+										<p>ガソリン価格：{userData.gasPrice}円</p>
+										<p>走行距離：{userData.mileage}km</p>
+										<p>燃費：{userData.mileage / userData.gas}km/L</p>
 									</>
 								) : (
 									<div>

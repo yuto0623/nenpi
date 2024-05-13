@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "UserData" ADD COLUMN     "gas" INTEGER NOT NULL DEFAULT 0;

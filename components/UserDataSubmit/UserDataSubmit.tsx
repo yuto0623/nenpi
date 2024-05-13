@@ -4,7 +4,7 @@ import type { Settings, UserData } from "@prisma/client";
 import axios from "axios";
 import { createRef, type Dispatch } from "react";
 
-export default function MileageSubmit({
+export default function UserDataSubmit({
 	userData,
 	getUserData,
 	setUserData,
@@ -15,9 +15,16 @@ export default function MileageSubmit({
 }) {
 	const onSubmit = async (formData: FormData) => {
 		if (!userData) return;
-		setUserData({ ...userData, mileage: Number(formData.get("mileage")) });
+		setUserData({
+			...userData,
+			mileage: Number(formData.get("mileage")),
+			gasPrice: Number(formData.get("gasPrice")),
+			gas: Number(formData.get("gas")),
+		});
 		const putBody = {
 			mileage: formData.get("mileage"),
+			gasPrice: formData.get("gasPrice"),
+			gas: formData.get("gas"),
 		};
 		const response = await axios.patch(
 			`/api/userData/${userData.userId}`,
@@ -35,13 +42,27 @@ export default function MileageSubmit({
 	return (
 		<form ref={ref} action={onSubmit}>
 			<Card className="max-w-[800px] mx-auto ">
-				<CardHeader>走行距離とガソリン価格の登録</CardHeader>
+				<CardHeader>ガソリン価格と走行距離と給油量の登録</CardHeader>
 				<CardBody className="flex flex-col items-center justify-center gap-4">
 					<Input
+						name="gasPrice"
+						placeholder={userData ? userData.gasPrice.toString() : "Loading..."}
+						endContent="円"
+						label="ガソリン価格"
+						isRequired
+					/>
+					<Input
 						name="mileage"
-						placeholder={userData ? userData.mileage.toString() : "0"}
+						placeholder={userData ? userData.mileage.toString() : "Loading..."}
 						endContent="km"
 						label="走行距離"
+						isRequired
+					/>
+					<Input
+						name="gas"
+						placeholder={userData ? userData.gas.toString() : "Loading..."}
+						endContent="L"
+						label="給油量"
 						isRequired
 					/>
 					<Button type="submit" radius="full" color="success">
