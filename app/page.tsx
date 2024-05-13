@@ -9,6 +9,7 @@ import axios from "axios";
 import { Spinner, Card, CardHeader, CardBody } from "@nextui-org/react";
 import BottomBar from "@/components/BottomBar/BottomBar";
 import type { Settings } from "@prisma/client";
+import MileageSubmit from "@/components/MileageSubmit/MileageSubmit";
 
 export default function Home() {
 	const { data: session, status } = useSession();
@@ -33,19 +34,6 @@ export default function Home() {
 		}
 	}, [getUserSettings, userSettings]);
 
-	const onSubmit = async (formData: FormData) => {
-		if (!userSettings) return;
-		const putBody = {
-			mileage: formData.get("mileage"),
-		};
-		const response = await axios.patch(
-			`/api/settings/${userSettings.userId}`,
-			JSON.stringify(putBody),
-		);
-		// console.log(response.data);
-		getUserSettings();
-	};
-
 	return (
 		<>
 			{status === "authenticated" ? (
@@ -53,23 +41,11 @@ export default function Home() {
 					<Navigationbar />
 					<main className="px-4">
 						{page === "home" ? (
-							<form action={onSubmit}>
-								<Card className="max-w-[800px] mx-auto ">
-									<CardHeader>走行距離の登録</CardHeader>
-									<CardBody className="flex flex-col items-center justify-center gap-4">
-										<Input
-											name="mileage"
-											placeholder={
-												userSettings ? userSettings.mileage.toString() : "0"
-											}
-											endContent="km"
-											isRequired
-										/>
-										<Button type="submit" radius="full" color="success">
-											登録
-										</Button>
-									</CardBody>
-								</Card>
+							<div>
+								<MileageSubmit
+									userSettings={userSettings}
+									getUserSettings={getUserSettings}
+								/>
 								{userSettings ? (
 									<>
 										<p>{userSettings.mileage}</p>
@@ -79,7 +55,7 @@ export default function Home() {
 										<Spinner />
 									</div>
 								)}
-							</form>
+							</div>
 						) : page === "friend" ? (
 							<p>friend</p>
 						) : (
