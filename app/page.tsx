@@ -13,6 +13,11 @@ import type { Settings } from "@prisma/client";
 export default function Home() {
 	const { data: session, status } = useSession();
 	const [userSettings, setUserSettings] = useState<Settings>();
+	const [page, setPage] = useState("home");
+
+	const setPageHandler = (page: string) => {
+		setPage(page);
+	};
 
 	const getUserSettings = async () => {
 		const id = session?.user?.id;
@@ -33,7 +38,10 @@ export default function Home() {
 		const putBody = {
 			mileage: formData.get("mileage"),
 		};
-		const response = await axios.patch(`/api/settings/${userSettings.userId}`, JSON.stringify(putBody));
+		const response = await axios.patch(
+			`/api/settings/${userSettings.userId}`,
+			JSON.stringify(putBody),
+		);
 		// console.log(response.data);
 		getUserSettings();
 	};
@@ -41,17 +49,29 @@ export default function Home() {
 	return (
 		<main>
 			{status === "authenticated" ? (
-					<form action={onSubmit}>
-						<Input name="mileage" isRequired />
-						<Button type="submit">送信</Button>
-						{userSettings ? (
-							<p>{userSettings.mileage}</p>
-						) : (
-							<div>
-								<Spinner />
-							</div>
-						)}
-					</form>
+				<>
+					<Navigationbar />
+					{page === "home" ? (
+						<form action={onSubmit}>
+							<Input name="mileage" isRequired />
+							<Button type="submit">送信</Button>
+							{userSettings ? (
+								<>
+									<p>{userSettings.mileage}</p>
+								</>
+							) : (
+								<div>
+									<Spinner />
+								</div>
+							)}
+						</form>
+					) : page === "friend" ? (
+						<p>friend</p>
+					) : (
+						<p>no-page</p>
+					)}
+					<BottomBar page={page} setPageHandler={setPageHandler} />
+				</>
 			) : (
 				<Login />
 			)}
