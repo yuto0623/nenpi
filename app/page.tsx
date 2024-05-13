@@ -34,6 +34,9 @@ export default function Home() {
 		if (!id) return;
 		const response = await axios.get(`/api/userData/${id}`);
 		// console.log(response.data);
+		if (response.data === userData) {
+			return;
+		}
 		setUserData(response.data);
 	};
 
