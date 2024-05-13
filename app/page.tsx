@@ -6,7 +6,7 @@ import { Navigationbar } from "@/components/Navigationbar/Navigationbar";
 import { useSession } from "next-auth/react";
 import Login from "@/components/Login/Login";
 import axios from "axios";
-import { Spinner } from "@nextui-org/react";
+import { Spinner, Card, CardHeader, CardBody } from "@nextui-org/react";
 import BottomBar from "@/components/BottomBar/BottomBar";
 import type { Settings } from "@prisma/client";
 
@@ -47,34 +47,52 @@ export default function Home() {
 	};
 
 	return (
-		<main>
+		<>
 			{status === "authenticated" ? (
 				<>
 					<Navigationbar />
-					{page === "home" ? (
-						<form action={onSubmit}>
-							<Input name="mileage" isRequired />
-							<Button type="submit">送信</Button>
-							{userSettings ? (
-								<>
-									<p>{userSettings.mileage}</p>
-								</>
-							) : (
-								<div>
-									<Spinner />
-								</div>
-							)}
-						</form>
-					) : page === "friend" ? (
-						<p>friend</p>
-					) : (
-						<p>no-page</p>
-					)}
+					<main className="px-4">
+						{page === "home" ? (
+							<form action={onSubmit}>
+								<Card className="max-w-[800px] mx-auto ">
+									<CardHeader>走行距離の登録</CardHeader>
+									<CardBody className="flex flex-col items-center justify-center gap-4">
+										<Input
+											name="mileage"
+											placeholder={
+												userSettings ? userSettings.mileage.toString() : "0"
+											}
+											endContent="km"
+											isRequired
+										/>
+										<Button type="submit" radius="full" color="success">
+											登録
+										</Button>
+									</CardBody>
+								</Card>
+								{userSettings ? (
+									<>
+										<p>{userSettings.mileage}</p>
+									</>
+								) : (
+									<div>
+										<Spinner />
+									</div>
+								)}
+							</form>
+						) : page === "friend" ? (
+							<p>friend</p>
+						) : (
+							<p>no-page</p>
+						)}
+					</main>
 					<BottomBar page={page} setPageHandler={setPageHandler} />
 				</>
 			) : (
-				<Login />
+				<main>
+					<Login />
+				</main>
 			)}
-		</main>
+		</>
 	);
 }
