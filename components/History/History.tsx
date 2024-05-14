@@ -15,7 +15,7 @@ export default function History() {
 		if (response.data === dataList) {
 			return;
 		}
-		setDataList(response.data);
+		setDataList(response.data.reverse());
 	};
 
 	useEffect(() => {
@@ -28,7 +28,7 @@ export default function History() {
 		<div>
 			{dataList == null && <Spinner />}
 			{dataList?.map((data) => (
-				<div key={data.id} className="my-4">
+				<div key={data.created_at.toString()} className="my-4">
 					<p>
 						登録時間：
 						{new Date(data.created_at).toLocaleString("ja-JP", {

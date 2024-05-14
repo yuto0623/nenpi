@@ -19,6 +19,7 @@ export async function GET(
       },
     }
   })
+  console.log(response)
   if (!response) {
     const response = await prisma.userData.create({
       data: {
