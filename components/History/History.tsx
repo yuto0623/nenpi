@@ -19,7 +19,7 @@ export default function History() {
 	};
 
 	useEffect(() => {
-		console.log(dataList);
+		// console.log(dataList);
 		if (dataList) return;
 		getAllDataList();
 	}, [getAllDataList, dataList]);
