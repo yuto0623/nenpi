@@ -4,7 +4,7 @@ import type { Settings, UserData } from "@prisma/client";
 import axios from "axios";
 import { createRef, type Dispatch } from "react";
 
-export default function UserDataSubmit({
+export default function DataListSubmit({
 	userData,
 	getUserData,
 	setUserData,
@@ -17,17 +17,17 @@ export default function UserDataSubmit({
 		if (!userData) return;
 		setUserData({
 			...userData,
-			mileage: Number(formData.get("mileage")),
-			gasPrice: Number(formData.get("gasPrice")),
-			gas: Number(formData.get("gas")),
+			// mileage: Number(formData.get("mileage")),
+			// gasPrice: Number(formData.get("gasPrice")),
+			// gas: Number(formData.get("gas")),
 		});
 		const putBody = {
 			mileage: formData.get("mileage"),
 			gasPrice: formData.get("gasPrice"),
 			gas: formData.get("gas"),
 		};
-		const response = await axios.patch(
-			`/api/userData/${userData.userId}`,
+		const response = await axios.post(
+			`/api/dataList/${userData.userId}`,
 			JSON.stringify(putBody),
 		);
 		if (response) {
@@ -46,24 +46,30 @@ export default function UserDataSubmit({
 				<CardBody className="flex flex-col items-center justify-center gap-4">
 					<Input
 						name="gasPrice"
-						placeholder={userData ? userData.gasPrice.toString() : "Loading..."}
+						// placeholder={userData ? userData.gasPrice.toString() : "Loading..."}
 						endContent="円"
 						label="ガソリン価格"
 						isRequired
+						type="number"
+						max={2147483647}
 					/>
 					<Input
 						name="mileage"
-						placeholder={userData ? userData.mileage.toString() : "Loading..."}
+						// placeholder={userData ? userData.mileage.toString() : "Loading..."}
 						endContent="km"
 						label="走行距離"
 						isRequired
+						type="number"
+						max={2147483647}
 					/>
 					<Input
 						name="gas"
-						placeholder={userData ? userData.gas.toString() : "Loading..."}
+						// placeholder={userData ? userData.gas.toString() : "Loading..."}
 						endContent="L"
 						label="給油量"
 						isRequired
+						type="number"
+						max={2147483647}
 					/>
 					<Button type="submit" radius="full" color="success">
 						登録

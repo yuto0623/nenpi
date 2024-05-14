@@ -18,6 +18,7 @@ export default function BottomBar({
 			}}
 		>
 			<Tab key="home" title="HOME" />
+			<Tab key="history" title="HISTORY" />
 			<Tab key="friend" title="FRIEND" />
 			{/* <Tab title="HOME3" />
 			<Tab title="HOME4" /> */}

@@ -8,13 +8,15 @@ import Login from "@/components/Login/Login";
 import axios from "axios";
 import { Spinner, Card, CardHeader, CardBody } from "@nextui-org/react";
 import BottomBar from "@/components/BottomBar/BottomBar";
-import type { Settings, UserData } from "@prisma/client";
-import UserDataSubmit from "@/components/UserDataSubmit/UserDataSubmit";
+import type { Settings, UserData, DataList } from "@prisma/client";
+import UserDataSubmit from "@/components/DataListSubmit/DataListSubmit";
+import History from "@/components/History/History";
 
 export default function Home() {
 	const { data: session, status } = useSession();
 	const [userSettings, setUserSettings] = useState<Settings>();
 	const [userData, setUserData] = useState<UserData>();
+	const [dataList, setDataList] = useState<DataList>();
 	const [page, setPage] = useState("home");
 
 	const setPageHandler = (page: string) => {
@@ -37,17 +39,19 @@ export default function Home() {
 		if (response.data === userData) {
 			return;
 		}
+		// console.log(response.data.dataList[0]);
 		setUserData(response.data);
+		setDataList(response.data.dataList[0]);
 	};
 
 	useEffect(() => {
 		if (!userSettings) {
 			getUserSettings();
 		}
-		if (!userData) {
+		if (!userData || !dataList) {
 			getUserData();
 		}
-	}, [getUserSettings, userSettings, getUserData, userData]);
+	}, [getUserSettings, userSettings, getUserData, userData, dataList]);
 
 	return (
 		<>
@@ -62,11 +66,12 @@ export default function Home() {
 									getUserData={getUserData}
 									setUserData={setUserData}
 								/>
-								{userData ? (
+								{dataList ? (
 									<>
-										<p>ガソリン価格：{userData.gasPrice}円</p>
-										<p>走行距離：{userData.mileage}km</p>
-										<p>燃費：{userData.mileage / userData.gas}km/L</p>
+										<p>ガソリン価格：{dataList.gasPrice}円</p>
+										<p>走行距離：{dataList.mileage}km</p>
+										<p>給油量：{dataList.gas}km</p>
+										<p>燃費：{dataList.mileage / dataList.gas}km/L</p>
 									</>
 								) : (
 									<div>
@@ -74,10 +79,12 @@ export default function Home() {
 									</div>
 								)}
 							</div>
+						) : page === "history" ? (
+							<History />
 						) : page === "friend" ? (
 							<p>friend</p>
 						) : (
-							<p>no-page</p>
+							<p>nopage</p>
 						)}
 					</main>
 					<BottomBar page={page} setPageHandler={setPageHandler} />
