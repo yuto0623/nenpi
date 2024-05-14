@@ -29,10 +29,27 @@ export default function History() {
 			{dataList == null && <Spinner />}
 			{dataList?.map((data) => (
 				<div key={data.id} className="my-4">
-					<p>{data.created_at.toString()}</p>
-					<p>{data.mileage}</p>
-					<p>{data.gasPrice}</p>
-					<p>{data.gas}</p>
+					<p>
+						登録時間：
+						{new Date(data.created_at).toLocaleString("ja-JP", {
+							timeZone: "Asia/Tokyo",
+							year: "numeric",
+							month: "long",
+							day: "numeric",
+							hour: "numeric",
+						})}
+						{new Date(data.created_at)
+							.toLocaleString("ja-JP", {
+								timeZone: "Asia/Tokyo",
+								minute: "numeric",
+								second: "numeric",
+							})
+							.replace(":", "分")}
+						秒
+					</p>
+					<p>走行距離：{data.mileage}</p>
+					<p>ガソリン価格：{data.gasPrice}</p>
+					<p>給油量：{data.gas}</p>
 				</div>
 			))}
 		</div>
