@@ -63,6 +63,7 @@ export default function Home() {
 							<div>
 								<UserDataSubmit
 									userData={userData}
+									dataList={dataList}
 									getUserData={getUserData}
 									setUserData={setUserData}
 								/>

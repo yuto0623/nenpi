@@ -1,15 +1,17 @@
 "use client";
 import { Button, Card, CardBody, CardHeader, Input } from "@nextui-org/react";
-import type { Settings, UserData } from "@prisma/client";
+import type { DataList, Settings, UserData } from "@prisma/client";
 import axios from "axios";
 import { createRef, type Dispatch } from "react";
 
 export default function DataListSubmit({
 	userData,
+	dataList,
 	getUserData,
 	setUserData,
 }: {
 	userData: UserData | undefined;
+	dataList: DataList | undefined;
 	getUserData: () => void;
 	setUserData: Dispatch<React.SetStateAction<UserData | undefined>>;
 }) {
@@ -46,8 +48,8 @@ export default function DataListSubmit({
 				<CardBody className="flex flex-col items-center justify-center gap-4">
 					<Input
 						name="gasPrice"
-						// placeholder={userData ? userData.gasPrice.toString() : "Loading..."}
-						endContent="円"
+						placeholder={dataList ? dataList.gasPrice.toString() : "Loading..."}
+						endContent="円/L"
 						label="ガソリン価格"
 						isRequired
 						type="number"
@@ -55,7 +57,7 @@ export default function DataListSubmit({
 					/>
 					<Input
 						name="mileage"
-						// placeholder={userData ? userData.mileage.toString() : "Loading..."}
+						placeholder={dataList ? dataList.mileage.toString() : "Loading..."}
 						endContent="km"
 						label="走行距離"
 						isRequired
@@ -64,7 +66,7 @@ export default function DataListSubmit({
 					/>
 					<Input
 						name="gas"
-						// placeholder={userData ? userData.gas.toString() : "Loading..."}
+						placeholder={dataList ? dataList.gas.toString() : "Loading..."}
 						endContent="L"
 						label="給油量"
 						isRequired
