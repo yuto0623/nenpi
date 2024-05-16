@@ -53,16 +53,16 @@ export default function History() {
 										year: "numeric",
 										month: "long",
 										day: "numeric",
-										hour: "numeric",
+										// hour: "numeric",
 									})}
-									{new Date(data.created_at)
+									{/* {new Date(data.created_at)
 										.toLocaleString("ja-JP", {
 											timeZone: "Asia/Tokyo",
 											minute: "numeric",
 											second: "numeric",
 										})
 										.replace(":", "分")}
-									秒
+									秒 */}
 								</TableCell>
 								<TableCell>{data.mileage}Km</TableCell>
 								<TableCell>{data.gasPrice}円/L</TableCell>
