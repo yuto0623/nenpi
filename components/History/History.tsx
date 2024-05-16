@@ -1,4 +1,12 @@
-import { Spinner } from "@nextui-org/react";
+import {
+	Spinner,
+	Table,
+	TableHeader,
+	TableBody,
+	TableColumn,
+	TableRow,
+	TableCell,
+} from "@nextui-org/react";
 import type { DataList } from "@prisma/client";
 import axios from "axios";
 import { useSession } from "next-auth/react";
@@ -26,32 +34,44 @@ export default function History() {
 
 	return (
 		<div>
-			{dataList == null && <Spinner />}
-			{dataList?.map((data) => (
-				<div key={data.created_at.toString()} className="my-4">
-					<p>
-						登録時間：
-						{new Date(data.created_at).toLocaleString("ja-JP", {
-							timeZone: "Asia/Tokyo",
-							year: "numeric",
-							month: "long",
-							day: "numeric",
-							hour: "numeric",
-						})}
-						{new Date(data.created_at)
-							.toLocaleString("ja-JP", {
-								timeZone: "Asia/Tokyo",
-								minute: "numeric",
-								second: "numeric",
-							})
-							.replace(":", "分")}
-						秒
-					</p>
-					<p>走行距離：{data.mileage}</p>
-					<p>ガソリン価格：{data.gasPrice}</p>
-					<p>給油量：{data.gas}</p>
-				</div>
-			))}
+			{dataList == null ? (
+				<Spinner />
+			) : (
+				<Table>
+					<TableHeader>
+						<TableColumn>登録時間</TableColumn>
+						<TableColumn>走行距離</TableColumn>
+						<TableColumn>ガソリン価格</TableColumn>
+						<TableColumn>給油量</TableColumn>
+					</TableHeader>
+					<TableBody>
+						{(dataList || [])?.map((data) => (
+							<TableRow key={data.created_at.toString()}>
+								<TableCell>
+									{new Date(data.created_at).toLocaleString("ja-JP", {
+										timeZone: "Asia/Tokyo",
+										year: "numeric",
+										month: "long",
+										day: "numeric",
+										hour: "numeric",
+									})}
+									{new Date(data.created_at)
+										.toLocaleString("ja-JP", {
+											timeZone: "Asia/Tokyo",
+											minute: "numeric",
+											second: "numeric",
+										})
+										.replace(":", "分")}
+									秒
+								</TableCell>
+								<TableCell>{data.mileage}Km</TableCell>
+								<TableCell>{data.gasPrice}円/L</TableCell>
+								<TableCell>{data.gas}L</TableCell>
+							</TableRow>
+						))}
+					</TableBody>
+				</Table>
+			)}
 		</div>
 	);
 }
