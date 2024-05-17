@@ -19,15 +19,27 @@ export async function GET(
       },
     }
   })
-  console.log(response)
+  // console.log(response)
   if (!response) {
     const response = await prisma.userData.create({
       data: {
         userId: id,
+        dataList: {
+          create: {
+            mileage: 0,
+            gasPrice: 0,
+            gas: 0
+          }
+        }
       },
+      include: {
+        dataList: true
+      }
     })
+    console.log(response)
     return new Response(JSON.stringify(response))
   }
+
   // console.log(response)
   return new Response(JSON.stringify(response))
 }

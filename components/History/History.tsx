@@ -40,7 +40,7 @@ export default function History() {
 				<Table>
 					<TableHeader>
 						<TableColumn>登録時間</TableColumn>
-						<TableColumn>走行距離</TableColumn>
+						<TableColumn>オドメーター</TableColumn>
 						<TableColumn>ガソリン価格</TableColumn>
 						<TableColumn>給油量</TableColumn>
 					</TableHeader>

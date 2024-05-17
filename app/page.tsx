@@ -16,7 +16,7 @@ export default function Home() {
 	const { data: session, status } = useSession();
 	const [userSettings, setUserSettings] = useState<Settings>();
 	const [userData, setUserData] = useState<UserData>();
-	const [dataList, setDataList] = useState<DataList>();
+	const [dataList, setDataList] = useState<DataList[]>();
 	const [page, setPage] = useState("home");
 
 	const setPageHandler = (page: string) => {
@@ -39,9 +39,9 @@ export default function Home() {
 		if (response.data === userData) {
 			return;
 		}
-		// console.log(response.data.dataList[0]);
+		console.log(response.data.dataList);
 		setUserData(response.data);
-		setDataList(response.data.dataList[0]);
+		setDataList(response.data.dataList);
 	};
 
 	useEffect(() => {
@@ -69,10 +69,16 @@ export default function Home() {
 								/>
 								{dataList ? (
 									<>
-										<p>ガソリン価格：{dataList.gasPrice}円</p>
-										<p>走行距離：{dataList.mileage}km</p>
-										<p>給油量：{dataList.gas}km</p>
-										<p>燃費：{dataList.mileage / dataList.gas}km/L</p>
+										<p>ガソリン価格：{dataList[0].gasPrice}円</p>
+										<p>オドメーター：{dataList[0].mileage}km</p>
+										<p>
+											今回の走行距離：
+											{dataList[0].mileage -
+												(dataList[1] ? dataList[1].mileage : 0)}
+											km
+										</p>
+										<p>給油量：{dataList[0].gas}km</p>
+										<p>燃費：{dataList[0].mileage / dataList[0].gas}km/L</p>
 									</>
 								) : (
 									<div>

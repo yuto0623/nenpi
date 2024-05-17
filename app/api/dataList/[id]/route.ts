@@ -62,6 +62,24 @@ export async function GET(
       dataList: true
     }
   })
+  if (!response?.dataList) {
+    // console.log("create")
+  await prisma.userData.create({
+    data: {
+      userId: id,
+      dataList: {
+        create: {
+            mileage: 0,
+            gasPrice: 0,
+            gas: 0
+        }
+      }
+    },
+    include: {
+      dataList: true
+    }
+  })	
+  }
   // console.log(response?.dataList)
   return new Response(JSON.stringify(response?.dataList))
 }

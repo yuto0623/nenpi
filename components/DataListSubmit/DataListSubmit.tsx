@@ -11,7 +11,7 @@ export default function DataListSubmit({
 	setUserData,
 }: {
 	userData: UserData | undefined;
-	dataList: DataList | undefined;
+	dataList: DataList[] | undefined;
 	getUserData: () => void;
 	setUserData: Dispatch<React.SetStateAction<UserData | undefined>>;
 }) {
@@ -48,7 +48,9 @@ export default function DataListSubmit({
 				<CardBody className="flex flex-col items-center justify-center gap-4">
 					<Input
 						name="gasPrice"
-						placeholder={dataList ? dataList.gasPrice.toString() : "Loading..."}
+						placeholder={
+							dataList ? dataList[0].gasPrice.toString() : "Loading..."
+						}
 						endContent="円/L"
 						label="ガソリン価格"
 						isRequired
@@ -57,16 +59,19 @@ export default function DataListSubmit({
 					/>
 					<Input
 						name="mileage"
-						placeholder={dataList ? dataList.mileage.toString() : "Loading..."}
+						placeholder={
+							dataList ? dataList[0].mileage.toString() : "Loading..."
+						}
 						endContent="km"
-						label="走行距離"
+						label="オドメーター"
 						isRequired
 						type="number"
 						max={2147483647}
+						min={dataList ? dataList[0].mileage : 0}
 					/>
 					<Input
 						name="gas"
-						placeholder={dataList ? dataList.gas.toString() : "Loading..."}
+						placeholder={dataList ? dataList[0].gas.toString() : "Loading..."}
 						endContent="L"
 						label="給油量"
 						isRequired
