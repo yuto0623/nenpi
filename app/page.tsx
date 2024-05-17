@@ -6,7 +6,7 @@ import { Navigationbar } from "@/components/Navigationbar/Navigationbar";
 import { useSession } from "next-auth/react";
 import Login from "@/components/Login/Login";
 import axios from "axios";
-import { Spinner, Card, CardHeader, CardBody } from "@nextui-org/react";
+import { Spinner, Card, CardHeader, CardBody, Spacer } from "@nextui-org/react";
 import BottomBar from "@/components/BottomBar/BottomBar";
 import type { Settings, UserData, DataList } from "@prisma/client";
 import UserDataSubmit from "@/components/DataListSubmit/DataListSubmit";
@@ -69,16 +69,22 @@ export default function Home() {
 								/>
 								{dataList ? (
 									<>
-										<p>ガソリン価格：{dataList[0].gasPrice}円</p>
-										<p>オドメーター：{dataList[0].mileage}km</p>
-										<p>
-											今回の走行距離：
-											{dataList[0].mileage -
-												(dataList[1] ? dataList[1].mileage : 0)}
-											km
-										</p>
-										<p>給油量：{dataList[0].gas}km</p>
-										<p>燃費：{dataList[0].mileage / dataList[0].gas}km/L</p>
+										<Spacer y={5} />
+										<Card className="max-w-[800px] mx-auto">
+											<CardHeader>前回の走行データ</CardHeader>
+											<CardBody>
+												<p>ガソリン価格：{dataList[0].gasPrice}円</p>
+												<p>オドメーター：{dataList[0].mileage}km</p>
+												<p>
+													今回の走行距離：
+													{dataList[0].mileage -
+														(dataList[1] ? dataList[1].mileage : 0)}
+													km
+												</p>
+												<p>給油量：{dataList[0].gas}km</p>
+												<p>燃費：{dataList[0].mileage / dataList[0].gas}km/L</p>
+											</CardBody>
+										</Card>
 									</>
 								) : (
 									<div>

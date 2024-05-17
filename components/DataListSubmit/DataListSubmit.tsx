@@ -43,7 +43,7 @@ export default function DataListSubmit({
 
 	return (
 		<form ref={ref} action={onSubmit}>
-			<Card className="max-w-[800px] mx-auto ">
+			<Card className="max-w-[800px] mx-auto">
 				<CardHeader>ガソリン価格と走行距離と給油量の登録</CardHeader>
 				<CardBody className="flex flex-col items-center justify-center gap-4">
 					<Input
