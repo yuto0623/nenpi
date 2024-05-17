@@ -73,7 +73,12 @@ export default function DataListSubmit({
 						type="number"
 						max={2147483647}
 					/>
-					<Button type="submit" radius="full" color="success">
+					<Button
+						type="submit"
+						radius="full"
+						color="success"
+						isDisabled={!dataList}
+					>
 						登録
 					</Button>
 				</CardBody>
