@@ -14,7 +14,13 @@ import {
 
 export default function Chart(dataList: { dataList: DataList[] }) {
 	const transformedData = dataList.dataList.map((item) => ({
-		name: item.created_at.toString(),
+		name: new Date(item.created_at).toLocaleString("ja-JP", {
+			timeZone: "Asia/Tokyo",
+			year: "numeric",
+			month: "long",
+			day: "numeric",
+			hour: "numeric",
+		}),
 		mileage: item.mileage,
 		ガソリン価格: item.gasPrice,
 	}));

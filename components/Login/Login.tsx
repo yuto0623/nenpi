@@ -25,6 +25,9 @@ export default function Login() {
 			<Card className="w-2/3 max-w-80 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
 				<CardHeader>Login</CardHeader>
 				<CardBody>
+					<p>
+						メールアドレスとgoogleのアイコン画像が制作者に知られるので自己責任でお願いします！
+					</p>
 					<Button
 						type="button"
 						onClick={() => signIn("google", {}, { prompt: "login" })}

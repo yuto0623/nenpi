@@ -39,7 +39,7 @@ export default function Home() {
 		if (response.data === userData) {
 			return;
 		}
-		console.log(response.data.dataList);
+		// console.log(response.data.dataList);
 		setUserData(response.data);
 		setDataList(response.data.dataList);
 	};
