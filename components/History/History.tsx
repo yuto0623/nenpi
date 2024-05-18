@@ -34,7 +34,7 @@ export default function History() {
 	}, [getAllDataList, dataList]);
 
 	return (
-		<div>
+		<div className="mx-auto max-w-[800px]">
 			{dataList == null ? (
 				<Spinner />
 			) : (
