@@ -14,21 +14,12 @@ import History from "@/components/History/History";
 
 export default function Home() {
 	const { data: session, status } = useSession();
-	const [userSettings, setUserSettings] = useState<Settings>();
 	const [userData, setUserData] = useState<UserData>();
 	const [dataList, setDataList] = useState<DataList[]>();
 	const [page, setPage] = useState("home");
 
 	const setPageHandler = (page: string) => {
 		setPage(page);
-	};
-
-	const getUserSettings = async () => {
-		const id = session?.user?.id;
-		if (!id) return;
-		const response = await axios.get(`/api/settings/${id}`);
-		// console.log(response.data);
-		setUserSettings(response.data);
 	};
 
 	const getUserData = async () => {
@@ -45,13 +36,10 @@ export default function Home() {
 	};
 
 	useEffect(() => {
-		if (!userSettings) {
-			getUserSettings();
-		}
 		if (!userData || !dataList) {
 			getUserData();
 		}
-	}, [getUserSettings, userSettings, getUserData, userData, dataList]);
+	}, [getUserData, userData, dataList]);
 
 	return (
 		<>

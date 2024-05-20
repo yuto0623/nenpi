@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import prisma from "@/lib/PrismaClient";
 import type { NextRequest, NextResponse } from "next/server";
 
 
@@ -6,7 +6,6 @@ import type { NextRequest, NextResponse } from "next/server";
 export async function GET(req: NextRequest, res: NextResponse,
   { params }: { params: { id: string } }
 ) {
-  const prisma = new PrismaClient();
   // const body = await req.json();
   try {
     // const id = await req.nextUrl.searchParams.get("id");
