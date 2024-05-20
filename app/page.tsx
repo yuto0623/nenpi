@@ -11,17 +11,24 @@ import BottomBar from "@/components/BottomBar/BottomBar";
 import type { Settings, UserData, DataList } from "@prisma/client";
 import UserDataSubmit from "@/components/DataListSubmit/DataListSubmit";
 import History from "@/components/History/History";
-import Friend from "@/components/Friend/Friend";
+import Friend, { type UserWithData } from "@/components/Friend/Friend";
 
 export default function Home() {
 	const { data: session, status } = useSession();
 	const [userData, setUserData] = useState<UserData>();
 	const [dataList, setDataList] = useState<DataList[]>();
+	const [allUser, setAllUser] = useState<UserWithData[]>();
 
 	const [page, setPage] = useState("home");
 
 	const setPageHandler = (page: string) => {
 		setPage(page);
+	};
+
+	const getAllUser = async () => {
+		const response = await axios.get("/api/user");
+		console.log(response.data);
+		setAllUser(response.data);
 	};
 
 	const getUserData = async () => {
@@ -48,11 +55,12 @@ export default function Home() {
 	};
 
 	useEffect(() => {
-		if (!userData || !dataList) {
+		if (!userData || !dataList || !allUser) {
 			getUserData();
 			getAllDataList();
+			getAllUser();
 		}
-	}, [getUserData, getAllDataList, userData, dataList]);
+	}, [getUserData, getAllDataList, getAllUser, userData, dataList, allUser]);
 
 	return (
 		<>
@@ -95,7 +103,7 @@ export default function Home() {
 						) : page === "history" ? (
 							<History dataList={dataList} />
 						) : page === "friend" ? (
-							<Friend />
+							<Friend allUser={allUser} />
 						) : (
 							<p>nopage</p>
 						)}
