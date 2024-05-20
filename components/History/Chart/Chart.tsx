@@ -56,6 +56,7 @@ export default function Chart(dataList: { dataList: DataList[] | undefined }) {
 									dataKey="ガソリン価格"
 									stroke="#8884d8"
 									unit="円"
+									animationDuration={500}
 								/>
 								{/* <Line type="monotone" dataKey="正解数" stroke="#3ba2f6" />
 					<Line type="monotone" dataKey="正解率" stroke="#ff0092" /> */}
@@ -85,6 +86,7 @@ export default function Chart(dataList: { dataList: DataList[] | undefined }) {
 									dataKey="給油までの走行距離"
 									stroke="#8884d8"
 									unit="Km"
+									animationDuration={500}
 								/>
 								{/* <Line type="monotone" dataKey="正解数" stroke="#3ba2f6" />
 					<Line type="monotone" dataKey="正解率" stroke="#ff0092" /> */}
@@ -114,6 +116,7 @@ export default function Chart(dataList: { dataList: DataList[] | undefined }) {
 									dataKey="給油量"
 									stroke="#8884d8"
 									unit="L"
+									animationDuration={500}
 								/>
 								{/* <Line type="monotone" dataKey="正解数" stroke="#3ba2f6" />
 					<Line type="monotone" dataKey="正解率" stroke="#ff0092" /> */}
