@@ -65,8 +65,7 @@ export default function Home() {
 												<p>オドメーター：{dataList[0].mileage}km</p>
 												<p>
 													今回の走行距離：
-													{dataList[0].mileage -
-														(dataList[1] ? dataList[1].mileage : 0)}
+													{dataList[0].mileageIncrement}
 													km
 												</p>
 												<p>給油量：{dataList[0].gas}km</p>
