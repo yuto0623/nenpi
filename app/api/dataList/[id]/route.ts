@@ -82,6 +82,7 @@ export async function GET(
         dataList: true
       }
     })
+    return new Response(JSON.stringify(response?.dataList))
   }
   // console.log(response?.dataList)
   return new Response(JSON.stringify(response?.dataList))

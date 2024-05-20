@@ -11,6 +11,7 @@ import BottomBar from "@/components/BottomBar/BottomBar";
 import type { Settings, UserData, DataList } from "@prisma/client";
 import UserDataSubmit from "@/components/DataListSubmit/DataListSubmit";
 import History from "@/components/History/History";
+import Friend from "@/components/Friend/Friend";
 
 export default function Home() {
 	const { data: session, status } = useSession();
@@ -86,15 +87,15 @@ export default function Home() {
 										</Card>
 									</>
 								) : (
-									<div>
-										<Spinner />
+									<div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+										<Spinner label="Loading..." />
 									</div>
 								)}
 							</div>
 						) : page === "history" ? (
 							<History dataList={dataList} />
 						) : page === "friend" ? (
-							<p>friend</p>
+							<Friend />
 						) : (
 							<p>nopage</p>
 						)}
