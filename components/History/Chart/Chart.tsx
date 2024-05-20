@@ -31,6 +31,20 @@ export default function Chart(dataList: { dataList: DataList[] | undefined }) {
 
 	const reversedData = transformedData.reverse();
 
+	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+	const CustomTooltip = ({ active, payload, label }: any) => {
+		if (active && payload && payload.length) {
+			return (
+				<div className="custom-tooltip bg-gray-100 dark:bg-slate-900 p-5 rounded-2xl">
+					<p className="label">{`${label}`}</p>
+					<p className="desc">
+						{payload[0].value} {payload[0].unit}
+					</p>
+				</div>
+			);
+		}
+	};
+
 	return (
 		<Card>
 			<CardBody>
@@ -61,7 +75,7 @@ export default function Chart(dataList: { dataList: DataList[] | undefined }) {
 								{/* <Line type="monotone" dataKey="正解数" stroke="#3ba2f6" />
 					<Line type="monotone" dataKey="正解率" stroke="#ff0092" /> */}
 								<Legend />
-								<Tooltip />
+								<Tooltip content={<CustomTooltip />} />
 							</LineChart>
 						</ResponsiveContainer>
 					</Tab>
@@ -91,7 +105,7 @@ export default function Chart(dataList: { dataList: DataList[] | undefined }) {
 								{/* <Line type="monotone" dataKey="正解数" stroke="#3ba2f6" />
 					<Line type="monotone" dataKey="正解率" stroke="#ff0092" /> */}
 								<Legend />
-								<Tooltip />
+								<Tooltip content={<CustomTooltip />} />
 							</LineChart>
 						</ResponsiveContainer>
 					</Tab>
@@ -121,7 +135,7 @@ export default function Chart(dataList: { dataList: DataList[] | undefined }) {
 								{/* <Line type="monotone" dataKey="正解数" stroke="#3ba2f6" />
 					<Line type="monotone" dataKey="正解率" stroke="#ff0092" /> */}
 								<Legend />
-								<Tooltip />
+								<Tooltip content={<CustomTooltip />} />
 							</LineChart>
 						</ResponsiveContainer>
 					</Tab>

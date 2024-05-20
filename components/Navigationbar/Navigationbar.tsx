@@ -28,7 +28,7 @@ export function Navigationbar() {
 			</NavbarContent>
 			<NavbarContent className="hidden sm:flex">
 				<Settings>
-				<UserDetail />
+					<UserDetail />
 				</Settings>
 				{/* <NavbarBrand>
 					<p className="font-bold text-inherit">test</p>
@@ -39,8 +39,8 @@ export function Navigationbar() {
 				<NavbarMenuItem>
 					{/* <Settings>Settings</Settings> */}
 					<div className="flex items-center text-sm">
-									ナイトモード：
-									<ThemeSwitcher />
+						ナイトモード：
+						<ThemeSwitcher />
 					</div>
 				</NavbarMenuItem>
 				<NavbarMenuItem>
