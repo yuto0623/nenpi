@@ -12,7 +12,9 @@ import {
 	ResponsiveContainer,
 } from "recharts";
 
-export default function Chart(dataList: { dataList: DataList[] }) {
+export default function Chart(dataList: { dataList: DataList[] | undefined }) {
+	if (!dataList.dataList) return null;
+
 	const transformedData = dataList.dataList.map((item) => ({
 		name: new Date(item.created_at).toLocaleString("ja-JP", {
 			timeZone: "Asia/Tokyo",

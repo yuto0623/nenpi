@@ -16,6 +16,7 @@ export default function Home() {
 	const { data: session, status } = useSession();
 	const [userData, setUserData] = useState<UserData>();
 	const [dataList, setDataList] = useState<DataList[]>();
+
 	const [page, setPage] = useState("home");
 
 	const setPageHandler = (page: string) => {
@@ -35,11 +36,22 @@ export default function Home() {
 		setDataList(response.data.dataList);
 	};
 
+	const getAllDataList = async () => {
+		const id = session?.user?.id;
+		if (!id) return;
+		const response = await axios.get(`/api/dataList/${id}`);
+		if (response.data === dataList) {
+			return;
+		}
+		setDataList(response.data.reverse());
+	};
+
 	useEffect(() => {
 		if (!userData || !dataList) {
 			getUserData();
+			getAllDataList();
 		}
-	}, [getUserData, userData, dataList]);
+	}, [getUserData, getAllDataList, userData, dataList]);
 
 	return (
 		<>
@@ -80,7 +92,7 @@ export default function Home() {
 								)}
 							</div>
 						) : page === "history" ? (
-							<History />
+							<History dataList={dataList} />
 						) : page === "friend" ? (
 							<p>friend</p>
 						) : (

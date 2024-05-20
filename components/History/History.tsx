@@ -13,30 +13,19 @@ import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import Chart from "./Chart/Chart";
 
-export default function History() {
+export default function History(dataList: {
+	dataList: DataList[] | undefined;
+}) {
 	const { data: session, status } = useSession();
-	const [dataList, setDataList] = useState<DataList[]>();
 
-	const getAllDataList = async () => {
-		const id = session?.user?.id;
-		if (!id) return;
-		const response = await axios.get(`/api/dataList/${id}`);
-		if (response.data === dataList) {
-			return;
-		}
-		setDataList(response.data.reverse());
-	};
-
-	useEffect(() => {
-		// console.log(dataList);
-		if (dataList) return;
-		getAllDataList();
-	}, [getAllDataList, dataList]);
+	const dataListProps = dataList.dataList;
 
 	return (
 		<div className="mx-auto max-w-[800px]">
 			{dataList == null ? (
-				<Spinner />
+				<div className="flex justify-center items-center w-full h-full">
+					<Spinner />
+				</div>
 			) : (
 				<>
 					<Table>
@@ -48,7 +37,7 @@ export default function History() {
 							<TableColumn>給油量</TableColumn>
 						</TableHeader>
 						<TableBody>
-							{(dataList || [])?.map((data) => (
+							{(dataListProps || [])?.map((data) => (
 								<TableRow key={data.created_at.toString()}>
 									<TableCell>
 										{new Date(data.created_at).toLocaleString("ja-JP", {
@@ -75,7 +64,7 @@ export default function History() {
 							))}
 						</TableBody>
 					</Table>
-					<Chart dataList={dataList} />
+					<Chart dataList={dataListProps} />
 				</>
 			)}
 		</div>
