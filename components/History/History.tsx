@@ -43,7 +43,7 @@ export default function History() {
 						<TableHeader>
 							<TableColumn>登録時間</TableColumn>
 							<TableColumn>オドメーター</TableColumn>
-							{/* <TableColumn>走行距離</TableColumn> */}
+							<TableColumn>給油までの走行距離</TableColumn>
 							<TableColumn>ガソリン価格</TableColumn>
 							<TableColumn>給油量</TableColumn>
 						</TableHeader>
@@ -68,6 +68,7 @@ export default function History() {
 									秒 */}
 									</TableCell>
 									<TableCell>{data.mileage}Km</TableCell>
+									<TableCell>{data.mileageIncrement}Km</TableCell>
 									<TableCell>{data.gasPrice}円/L</TableCell>
 									<TableCell>{data.gas}L</TableCell>
 								</TableRow>
