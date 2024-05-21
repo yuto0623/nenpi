@@ -54,6 +54,7 @@ export default function DataListSubmit({
 		}
 		// console.log(response.data);
 		getUserData();
+		onOpenChange();
 	};
 
 	const ref = createRef<HTMLFormElement>();
