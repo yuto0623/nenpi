@@ -2,8 +2,9 @@
 
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import { SunIcon, MoonIcon } from "@heroicons/react/24/solid";
 import { Switch } from "@nextui-org/react";
+import WbSunnyIcon from "@mui/icons-material/WbSunny";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
 
 export function ThemeSwitcher() {
 	const [mounted, setMounted] = useState(false);
@@ -27,9 +28,9 @@ export function ThemeSwitcher() {
 				}}
 				thumbIcon={({ isSelected, className }) =>
 					isSelected ? (
-						<SunIcon className={`${className}`} />
+						<WbSunnyIcon className={`${className} text-[#F5A524] p-1`} />
 					) : (
-						<MoonIcon className={className} />
+						<DarkModeIcon className={`${className} p-1`} />
 					)
 				}
 			/>

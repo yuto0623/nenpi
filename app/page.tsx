@@ -27,7 +27,7 @@ export default function Home() {
 
 	const getAllUser = async () => {
 		const response = await axios.get("/api/user");
-		console.log(response.data);
+		// console.log(response.data);
 		setAllUser(response.data);
 	};
 

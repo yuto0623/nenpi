@@ -15,7 +15,7 @@ import {
 import type { DataList, Settings, UserData } from "@prisma/client";
 import axios from "axios";
 import { createRef, type Dispatch } from "react";
-import { PlusIcon } from "@heroicons/react/24/solid";
+import AddIcon from "@mui/icons-material/Add";
 
 export default function DataListSubmit({
 	userData,
@@ -67,7 +67,7 @@ export default function DataListSubmit({
 				onPress={onOpen}
 				size="lg"
 			>
-				<PlusIcon />
+				<AddIcon />
 			</Button>
 			<Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="center">
 				<ModalContent>

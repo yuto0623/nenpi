@@ -6,6 +6,8 @@ import {
 	TableColumn,
 	TableRow,
 	TableCell,
+	Card,
+	CardHeader,
 } from "@nextui-org/react";
 import type { DataList } from "@prisma/client";
 import axios from "axios";
@@ -28,6 +30,21 @@ export default function History(dataList: {
 				</div>
 			) : (
 				<>
+					<Card>
+						{dataListProps?.map((data) => (
+							<Card key={data.created_at.toString()}>
+								<CardHeader>
+									{new Date(data.created_at).toLocaleString("ja-JP", {
+										timeZone: "Asia/Tokyo",
+										year: "numeric",
+										month: "long",
+										day: "numeric",
+										// hour: "numeric",
+									})}
+								</CardHeader>
+							</Card>
+						))}
+					</Card>
 					<Table>
 						<TableHeader>
 							<TableColumn>登録時間</TableColumn>
@@ -36,8 +53,8 @@ export default function History(dataList: {
 							<TableColumn>ガソリン価格</TableColumn>
 							<TableColumn>給油量</TableColumn>
 						</TableHeader>
-						<TableBody>
-							{(dataListProps || [])?.map((data) => (
+						<TableBody items={dataListProps}>
+							{(data) => (
 								<TableRow key={data.created_at.toString()}>
 									<TableCell>
 										{new Date(data.created_at).toLocaleString("ja-JP", {
@@ -61,7 +78,7 @@ export default function History(dataList: {
 									<TableCell>{data.gasPrice}円/L</TableCell>
 									<TableCell>{data.gas}L</TableCell>
 								</TableRow>
-							))}
+							)}
 						</TableBody>
 					</Table>
 					<Chart dataList={dataListProps} />
