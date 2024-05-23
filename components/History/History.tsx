@@ -8,12 +8,17 @@ import {
 	TableCell,
 	Card,
 	CardHeader,
+	Avatar,
+	CardBody,
 } from "@nextui-org/react";
 import type { DataList } from "@prisma/client";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import Chart from "./Chart/Chart";
+import LocalGasStationIcon from "@mui/icons-material/LocalGasStation";
+import { Chip } from "@nextui-org/react";
+import SpeedIcon from "@mui/icons-material/Speed";
 
 export default function History(dataList: {
 	dataList: DataList[] | undefined;
@@ -30,10 +35,18 @@ export default function History(dataList: {
 				</div>
 			) : (
 				<>
-					<Card>
+					<Chart dataList={dataListProps} />
+
+					<div className="flex flex-col gap-6">
 						{dataListProps?.map((data) => (
 							<Card key={data.created_at.toString()}>
-								<CardHeader>
+								<CardHeader className="flex gap-4 flex-row">
+									<Avatar
+										isBordered
+										color="primary"
+										size="sm"
+										icon={<LocalGasStationIcon />}
+									/>
 									{new Date(data.created_at).toLocaleString("ja-JP", {
 										timeZone: "Asia/Tokyo",
 										year: "numeric",
@@ -41,47 +54,28 @@ export default function History(dataList: {
 										day: "numeric",
 										// hour: "numeric",
 									})}
+									<Chip variant="flat" startContent={<SpeedIcon />}>
+										{data.mileage}Km
+									</Chip>
 								</CardHeader>
+								<CardBody className="text-sm flex flex-col gap-3 px-4">
+									{/* <p>オドメーター：{data.mileage}Km</p> */}
+									<div className="flex flex-row justify-between">
+										<span>前回の給油からの走行距離：</span>
+										<span>{data.mileageIncrement}Km</span>
+									</div>
+									<div className="flex flex-row justify-between">
+										<span>ガソリン価格：</span>
+										<span>{data.gasPrice}円/L</span>
+									</div>
+									<div className="flex flex-row justify-between">
+										<span>給油量：</span>
+										<span>{data.gas}L</span>
+									</div>
+								</CardBody>
 							</Card>
 						))}
-					</Card>
-					<Table>
-						<TableHeader>
-							<TableColumn>登録時間</TableColumn>
-							<TableColumn>オドメーター</TableColumn>
-							<TableColumn>給油までの走行距離</TableColumn>
-							<TableColumn>ガソリン価格</TableColumn>
-							<TableColumn>給油量</TableColumn>
-						</TableHeader>
-						<TableBody items={dataListProps}>
-							{(data) => (
-								<TableRow key={data.created_at.toString()}>
-									<TableCell>
-										{new Date(data.created_at).toLocaleString("ja-JP", {
-											timeZone: "Asia/Tokyo",
-											year: "numeric",
-											month: "long",
-											day: "numeric",
-											// hour: "numeric",
-										})}
-										{/* {new Date(data.created_at)
-										.toLocaleString("ja-JP", {
-											timeZone: "Asia/Tokyo",
-											minute: "numeric",
-											second: "numeric",
-										})
-										.replace(":", "分")}
-									秒 */}
-									</TableCell>
-									<TableCell>{data.mileage}Km</TableCell>
-									<TableCell>{data.mileageIncrement}Km</TableCell>
-									<TableCell>{data.gasPrice}円/L</TableCell>
-									<TableCell>{data.gas}L</TableCell>
-								</TableRow>
-							)}
-						</TableBody>
-					</Table>
-					<Chart dataList={dataListProps} />
+					</div>
 				</>
 			)}
 		</div>
