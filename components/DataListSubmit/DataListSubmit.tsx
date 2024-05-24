@@ -44,7 +44,7 @@ export default function DataListSubmit({
 			mileageIncrement: dataList
 				? dataList.length > 0
 					? mileage - dataList[0].mileage
-					: 0
+					: mileage
 				: 0,
 			gasPrice: formData.get("gasPrice"),
 			gas: formData.get("gas"),
