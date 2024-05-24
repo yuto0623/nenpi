@@ -74,7 +74,7 @@ export default function History({ dataList, setDataList }: HistoryProps) {
 									</Chip>
 									<Dropdown>
 										<DropdownTrigger>
-											<MoreVertIcon />
+											<MoreVertIcon className="cursor-pointer" />
 										</DropdownTrigger>
 										<DropdownMenu>
 											<DropdownItem

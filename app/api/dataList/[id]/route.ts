@@ -19,6 +19,7 @@ export async function POST(
       userDataId: user?.id,
       mileage: Number(body.mileage),
       mileageIncrement: Number(body.mileageIncrement),
+      fuelEfficiency: Number(body.mileage) / Number(body.gas),
       gasPrice: Number(body.gasPrice),
       gas: Number(body.gas)
     }
@@ -34,6 +35,7 @@ export async function POST(
           create: {
             mileage: Number(body.mileage),
             mileageIncrement: Number(body.mileageIncrement),
+            fuelEfficiency: Number(body.mileage) / Number(body.gas),
             gasPrice: Number(body.gasPrice),
             gas: Number(body.gas)
           }
@@ -70,6 +72,7 @@ export async function GET(
           create: {
             mileage: 0,
             mileageIncrement: 0,
+            fuelEfficiency: 0,
             gasPrice: 0,
             gas: 0
           }
