@@ -1,5 +1,6 @@
 import {
 	Button,
+	Input,
 	Modal,
 	ModalBody,
 	ModalContent,
@@ -12,11 +13,13 @@ export default function UserNameSet() {
 
 	return (
 		<>
-			<Button onPress={onOpen}>test</Button>
+			<p onKeyDown={onOpen} onClick={onOpen} className="cursor-pointer m-0">
+				ユーザー名の変更
+			</p>
 			<Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="center">
 				<ModalContent>
 					<ModalBody>
-						<p>test</p>
+						<Input name="name" placeholder=""></Input>
 					</ModalBody>
 				</ModalContent>
 			</Modal>
