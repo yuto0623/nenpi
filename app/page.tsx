@@ -62,7 +62,6 @@ export default function Home() {
 		}
 	}, [getUserData, getAllDataList, getAllUser, userData, dataList, allUser]);
 
-	console.log(dataList?.length);
 	return (
 		<>
 			{status === "authenticated" ? (
@@ -88,7 +87,9 @@ export default function Home() {
 													<p>オドメーター：{dataList[0]?.mileage}km</p>
 													<p>
 														今回の走行距離：
-														{dataList[0]?.mileageIncrement}
+														{dataList[1]
+															? dataList[0].mileage - dataList[1].mileage
+															: dataList[0].mileage}
 														km
 													</p>
 													<p>給油量：{dataList[0]?.gas}km</p>

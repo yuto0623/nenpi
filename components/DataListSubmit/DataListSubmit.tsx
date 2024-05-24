@@ -41,11 +41,11 @@ export default function DataListSubmit({
 		const mileage = Number(formData.get("mileage"));
 		const putBody = {
 			mileage: mileage,
-			mileageIncrement: dataList
-				? dataList.length > 0
-					? mileage - dataList[0].mileage
-					: mileage
-				: 0,
+			// mileageIncrement: dataList
+			// 	? dataList.length > 0
+			// 		? mileage - dataList[0].mileage
+			// 		: mileage
+			// 	: 0,
 			gasPrice: formData.get("gasPrice"),
 			gas: formData.get("gas"),
 		};

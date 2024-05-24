@@ -79,14 +79,14 @@ model UserData {
 }
 
 model DataList {
-  id               Int       @id @default(autoincrement())
-  created_at       DateTime  @default(now())
-  updated_at       DateTime?
-  mileage          Int       @default(0)
-  mileageIncrement Int       @default(0)
-  gas              Int       @default(0)
-  gasPrice         Int       @default(0)
-  fuelEfficiency   Int       @default(0)
-  userData         UserData? @relation(fields: [userDataId], references: [id])
-  userDataId       Int?
+  id             Int       @id @default(autoincrement())
+  created_at     DateTime  @default(now())
+  updated_at     DateTime?
+  mileage        Int       @default(0)
+  // mileageIncrement Int       @default(0)
+  gas            Int       @default(0)
+  gasPrice       Int       @default(0)
+  fuelEfficiency Int       @default(0)
+  userData       UserData? @relation(fields: [userDataId], references: [id])
+  userDataId     Int?
 }

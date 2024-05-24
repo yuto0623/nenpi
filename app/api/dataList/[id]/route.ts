@@ -18,7 +18,7 @@ export async function POST(
     data: {
       userDataId: user?.id,
       mileage: Number(body.mileage),
-      mileageIncrement: Number(body.mileageIncrement),
+      // mileageIncrement: Number(body.mileageIncrement),
       fuelEfficiency: Number(body.mileage) / Number(body.gas),
       gasPrice: Number(body.gasPrice),
       gas: Number(body.gas)
@@ -34,7 +34,7 @@ export async function POST(
         dataList: {
           create: {
             mileage: Number(body.mileage),
-            mileageIncrement: Number(body.mileageIncrement),
+            // mileageIncrement: Number(body.mileageIncrement),
             fuelEfficiency: Number(body.mileage) / Number(body.gas),
             gasPrice: Number(body.gasPrice),
             gas: Number(body.gas)
@@ -71,7 +71,7 @@ export async function GET(
         dataList: {
           create: {
             mileage: 0,
-            mileageIncrement: 0,
+            // mileageIncrement: 0,
             fuelEfficiency: 0,
             gasPrice: 0,
             gas: 0
@@ -107,4 +107,26 @@ export async function DELETE(
   })
   return new Response(JSON.stringify({status: "success"}))
   // console.log(response?.dataList)
+}
+
+
+export async function PUT(
+  Request: NextRequest,
+  { params }: {params: {id: string}}
+){
+  const id = params.id;
+  const body = await Request.json();
+
+  await prisma.dataList.update({
+    where: {
+      id: Number(id)
+    },
+    data: {
+      mileage: Number(body.mileage),
+      // mileageIncrement: Number(body.mileageIncrement),
+      gasPrice:  Number(body.gasPrice),
+      gas:  Number(body.gas)
+    },
+  })
+  return new Response(JSON.stringify({status: "success"}))
 }
