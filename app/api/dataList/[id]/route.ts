@@ -48,9 +48,6 @@ export async function POST(
   return new Response(JSON.stringify(response))
 }
 
-
-
-
 export async function GET(
   Request: NextRequest,
   { params }: { params: { id: string } }

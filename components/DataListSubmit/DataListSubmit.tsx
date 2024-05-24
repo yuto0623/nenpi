@@ -41,7 +41,11 @@ export default function DataListSubmit({
 		const mileage = Number(formData.get("mileage"));
 		const putBody = {
 			mileage: mileage,
-			mileageIncrement: dataList ? mileage - dataList[0].mileage : 0,
+			mileageIncrement: dataList
+				? dataList.length > 0
+					? mileage - dataList[0].mileage
+					: 0
+				: 0,
 			gasPrice: formData.get("gasPrice"),
 			gas: formData.get("gas"),
 		};
@@ -81,7 +85,11 @@ export default function DataListSubmit({
 									<Input
 										name="gasPrice"
 										placeholder={
-											dataList ? dataList[0].gasPrice.toString() : "Loading..."
+											dataList
+												? dataList.length > 0
+													? dataList[0].gasPrice.toString()
+													: ""
+												: "Loading..."
 										}
 										endContent="円/L"
 										label="ガソリン価格"
@@ -92,19 +100,33 @@ export default function DataListSubmit({
 									<Input
 										name="mileage"
 										placeholder={
-											dataList ? dataList[0].mileage.toString() : "Loading..."
+											dataList
+												? dataList.length > 0
+													? dataList[0].mileage.toString()
+													: ""
+												: "Loading..."
 										}
 										endContent="km"
 										label="オドメーター"
 										isRequired
 										type="number"
 										max={2147483647}
-										min={dataList ? dataList[0].mileage : 0}
+										min={
+											dataList
+												? dataList.length > 0
+													? dataList[0].mileage.toString()
+													: 0
+												: 0
+										}
 									/>
 									<Input
 										name="gas"
 										placeholder={
-											dataList ? dataList[0].gas.toString() : "Loading..."
+											dataList
+												? dataList.length > 0
+													? dataList[0].mileage.toString()
+													: ""
+												: "Loading..."
 										}
 										endContent="L"
 										label="給油量"

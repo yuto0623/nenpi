@@ -62,6 +62,7 @@ export default function Home() {
 		}
 	}, [getUserData, getAllDataList, getAllUser, userData, dataList, allUser]);
 
+	console.log(dataList?.length);
 	return (
 		<>
 			{status === "authenticated" ? (
@@ -77,23 +78,29 @@ export default function Home() {
 									setUserData={setUserData}
 								/>
 								{dataList ? (
-									<>
-										<Spacer y={5} />
-										<Card className="max-w-[800px] mx-auto">
-											<CardHeader>前回の走行データ</CardHeader>
-											<CardBody>
-												<p>ガソリン価格：{dataList[0].gasPrice}円</p>
-												<p>オドメーター：{dataList[0].mileage}km</p>
-												<p>
-													今回の走行距離：
-													{dataList[0].mileageIncrement}
-													km
-												</p>
-												<p>給油量：{dataList[0].gas}km</p>
-												<p>燃費：{dataList[0].mileage / dataList[0].gas}km/L</p>
-											</CardBody>
-										</Card>
-									</>
+									dataList.length > 0 ? (
+										<>
+											<Spacer y={5} />
+											<Card className="max-w-[800px] mx-auto">
+												<CardHeader>前回の走行データ</CardHeader>
+												<CardBody>
+													<p>ガソリン価格：{dataList[0]?.gasPrice}円</p>
+													<p>オドメーター：{dataList[0]?.mileage}km</p>
+													<p>
+														今回の走行距離：
+														{dataList[0]?.mileageIncrement}
+														km
+													</p>
+													<p>給油量：{dataList[0]?.gas}km</p>
+													<p>
+														燃費：{dataList[0]?.mileage / dataList[0]?.gas}km/L
+													</p>
+												</CardBody>
+											</Card>
+										</>
+									) : (
+										<span />
+									)
 								) : (
 									<div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
 										<Spinner label="Loading..." />
