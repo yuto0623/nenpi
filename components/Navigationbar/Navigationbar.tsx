@@ -19,20 +19,20 @@ export function Navigationbar() {
 	const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
 	return (
-		<Navbar maxWidth="full" onMenuOpenChange={setIsMenuOpen}>
+		<Navbar maxWidth="xl" onMenuOpenChange={setIsMenuOpen}>
 			<NavbarContent className="sm:hidden" justify="start">
 				<NavbarMenuToggle />
-				{/* <NavbarBrand>
-					<p className="font-bold text-inherit">test</p>
-				</NavbarBrand> */}
+				<NavbarBrand>
+					<p className="font-bold text-inherit">nenpi!</p>
+				</NavbarBrand>
 			</NavbarContent>
 			<NavbarContent className="hidden sm:flex">
+				<NavbarBrand>
+					<p className="font-bold text-inherit">nenpi!</p>
+				</NavbarBrand>
 				<Settings>
 					<UserDetail />
 				</Settings>
-				{/* <NavbarBrand>
-					<p className="font-bold text-inherit">test</p>
-				</NavbarBrand> */}
 			</NavbarContent>
 			<NavbarMenu>
 				<UserDetail />
