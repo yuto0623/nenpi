@@ -90,7 +90,7 @@ export default function History({ dataList, setDataList }: HistoryProps) {
 			) : (
 				<>
 					<Chart dataList={dataList} />
-					<div className="flex flex-col gap-6">
+					<div className="flex flex-col gap-6 ">
 						{dataList?.map((data, index) => (
 							<Card key={data.created_at.toString()}>
 								<CardHeader className="flex gap-4 flex-row justify-between">

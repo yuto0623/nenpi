@@ -14,7 +14,7 @@ import {
 } from "@nextui-org/react";
 import type { DataList, Settings, UserData } from "@prisma/client";
 import axios from "axios";
-import { createRef, type Dispatch } from "react";
+import { createRef, useRef, useState, type Dispatch } from "react";
 import AddIcon from "@mui/icons-material/Add";
 
 export default function DataListSubmit({
@@ -29,9 +29,21 @@ export default function DataListSubmit({
 	setUserData: Dispatch<React.SetStateAction<UserData | undefined>>;
 }) {
 	const { isOpen, onOpen, onOpenChange } = useDisclosure();
+	const processing = useRef(false);
+	const [isDisabled, setDisabled] = useState(false);
+
+	const handleDisabled = (e: boolean) => {
+		setDisabled(e);
+		console.log(e);
+	};
 
 	const onSubmit = async (formData: FormData) => {
 		if (!userData) return;
+
+		if (processing.current) return;
+		processing.current = true;
+		handleDisabled(true);
+
 		setUserData({
 			...userData,
 			// mileage: Number(formData.get("mileage")),
@@ -59,6 +71,8 @@ export default function DataListSubmit({
 		// console.log(response.data);
 		getUserData();
 		onOpenChange();
+		processing.current = false;
+		handleDisabled(false);
 	};
 
 	const ref = createRef<HTMLFormElement>();
@@ -138,7 +152,7 @@ export default function DataListSubmit({
 										type="submit"
 										radius="full"
 										color="success"
-										isDisabled={!dataList}
+										isDisabled={isDisabled}
 									>
 										登録
 									</Button>

@@ -50,7 +50,7 @@ export default function Chart(dataList: { dataList: DataList[] | undefined }) {
 	};
 
 	return (
-		<Card>
+		<Card className="mb-4 max-h-[40%] ">
 			<CardBody>
 				<Tabs aria-label="History">
 					<Tab key="gasPrice" title="ガソリン価格">

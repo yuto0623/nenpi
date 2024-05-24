@@ -38,9 +38,7 @@ export default function Settings({
 								</div>
 								<Logout />
 							</ModalBody>
-							<ModalFooter>
-								<p>Modal Footer</p>
-							</ModalFooter>
+							<ModalFooter>{/* <p>Modal Footer</p> */}</ModalFooter>
 						</>
 					)}
 				</ModalContent>

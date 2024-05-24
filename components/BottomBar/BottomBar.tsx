@@ -14,7 +14,7 @@ export default function BottomBar({
 			onSelectionChange={(key) => setPageHandler(key.toString())}
 			classNames={{
 				tabList:
-					"fixed bottom-4 left-1/2 -translate-x-1/2 w-[95%] max-w-[500px]",
+					"fixed bottom-4 left-1/2 -translate-x-1/2 w-[95%] max-w-[500px] z-10",
 			}}
 		>
 			<Tab key="home" title="HOME" />

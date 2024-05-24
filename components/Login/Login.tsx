@@ -26,7 +26,7 @@ export default function Login() {
 				<CardHeader>Login</CardHeader>
 				<CardBody>
 					<p>
-						メールアドレスとgoogleのアイコン画像が制作者に知られるので自己責任でお願いします
+						個人情報(メールアドレス等)を知られても問題ない方のみログインしてください。
 					</p>
 					<Button
 						type="button"
