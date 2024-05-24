@@ -15,7 +15,7 @@ import {
 export default function Chart(dataList: { dataList: DataList[] | undefined }) {
 	if (!dataList.dataList) return null;
 
-	const transformedData = dataList.dataList.map((item) => ({
+	const transformedData = dataList.dataList.map((item, index) => ({
 		name: new Date(item.created_at).toLocaleString("ja-JP", {
 			timeZone: "Asia/Tokyo",
 			year: "numeric",
@@ -24,7 +24,11 @@ export default function Chart(dataList: { dataList: DataList[] | undefined }) {
 			hour: "numeric",
 		}),
 		mileage: item.mileage,
-		給油までの走行距離: item.mileageIncrement,
+		給油までの走行距離: dataList.dataList
+			? dataList?.dataList[index + 1]
+				? item.mileage - dataList?.dataList[index + 1]?.mileage
+				: item.mileage
+			: item.mileage,
 		ガソリン価格: item.gasPrice,
 		給油量: item.gas,
 	}));
