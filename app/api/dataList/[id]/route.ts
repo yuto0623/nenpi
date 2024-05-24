@@ -87,3 +87,24 @@ export async function GET(
   // console.log(response?.dataList)
   return new Response(JSON.stringify(response?.dataList))
 }
+
+
+export async function DELETE(
+  Request: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  // console.log(params)
+  const id = params.id;
+  // const response = await prisma.dataList.findUnique({
+  //   where: {
+  //     id: Number(id)
+  //   },
+  // })
+  await prisma.dataList.delete({
+    where: {
+      id: Number(id)
+    },
+  })
+  return new Response(JSON.stringify({status: "success"}))
+  // console.log(response?.dataList)
+}

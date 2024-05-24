@@ -101,7 +101,7 @@ export default function Home() {
 								)}
 							</div>
 						) : page === "history" ? (
-							<History dataList={dataList} />
+							<History dataList={dataList} setDataList={setDataList} />
 						) : page === "friend" ? (
 							<Friend allUser={allUser} />
 						) : (
