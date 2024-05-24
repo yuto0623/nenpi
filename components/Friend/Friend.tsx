@@ -24,7 +24,11 @@ export default function Friend(allUser: {
 					<User
 						key={user.id}
 						name={user.name}
-						description={`走行距離：${user.userData[0].dataList[0].mileage}Km`}
+						description={`走行距離：${
+							user.userData[0].dataList[0]
+								? user.userData[0].dataList[0].mileage
+								: 0
+						}Km`}
 						avatarProps={{
 							src: `${user.image}`,
 						}}
