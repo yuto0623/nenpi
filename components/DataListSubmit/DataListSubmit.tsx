@@ -16,6 +16,7 @@ import type { DataList, Settings, UserData } from "@prisma/client";
 import axios from "axios";
 import { createRef, useRef, useState, type Dispatch } from "react";
 import AddIcon from "@mui/icons-material/Add";
+import { CheckBox } from "@mui/icons-material";
 
 export default function DataListSubmit({
 	userData,
@@ -148,6 +149,7 @@ export default function DataListSubmit({
 										type="number"
 										max={2147483647}
 									/>
+									<CheckBox />
 									<Button
 										type="submit"
 										radius="full"

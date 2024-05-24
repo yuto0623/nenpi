@@ -28,7 +28,10 @@ export function ThemeSwitcher() {
 				}}
 				thumbIcon={({ isSelected, className }) =>
 					isSelected ? (
-						<WbSunnyIcon className={`${className} text-[#F5A524] p-1`} />
+						<WbSunnyIcon
+							className={`${className} p-1`}
+							sx={{ color: "#F5A524" }}
+						/>
 					) : (
 						<DarkModeIcon className={`${className} p-1`} />
 					)

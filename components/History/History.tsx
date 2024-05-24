@@ -1,11 +1,5 @@
 import {
 	Spinner,
-	Table,
-	TableHeader,
-	TableBody,
-	TableColumn,
-	TableRow,
-	TableCell,
 	Card,
 	CardHeader,
 	Avatar,
@@ -29,6 +23,7 @@ import LocalGasStationIcon from "@mui/icons-material/LocalGasStation";
 import { Chip } from "@nextui-org/react";
 import SpeedIcon from "@mui/icons-material/Speed";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import CurrencyYenIcon from "@mui/icons-material/CurrencyYen";
 
 interface HistoryProps {
 	dataList: DataList[] | undefined;
@@ -196,11 +191,25 @@ export default function History({ dataList, setDataList }: HistoryProps) {
 								<CardBody className="text-[12px] flex flex-col gap-3 px-4">
 									{/* <p>オドメーター：{data.mileage}Km</p> */}
 									<div className="flex flex-row justify-between">
-										<span>ガソリン価格：</span>
+										<span className="flex flex-row items-center gap-1">
+											<Avatar
+												icon={<CurrencyYenIcon className={"p-1"} />}
+												size="sm"
+												className="w-6 h-6 text-tiny"
+											/>
+											ガソリン価格：
+										</span>
 										<span>{data.gasPrice}円/L</span>
 									</div>
 									<div className="flex flex-row justify-between">
-										<span>前回の給油からの走行距離：</span>
+										<span className="flex flex-row items-center gap-1">
+											<Avatar
+												icon={<SpeedIcon className={"p-1"} />}
+												size="sm"
+												className="w-6 h-6 text-tiny"
+											/>
+											前回の給油からの走行距離：
+										</span>
 										<span>
 											{dataList[index + 1]
 												? data.mileage - dataList[index + 1]?.mileage
@@ -210,7 +219,14 @@ export default function History({ dataList, setDataList }: HistoryProps) {
 										</span>
 									</div>
 									<div className="flex flex-row justify-between">
-										<span>給油量：</span>
+										<span className="flex flex-row items-center gap-1">
+											<Avatar
+												icon={<LocalGasStationIcon className={"p-1"} />}
+												size="sm"
+												className="w-6 h-6 text-tiny"
+											/>
+											給油量：
+										</span>
 										<span>{data.gas}L</span>
 									</div>
 								</CardBody>
