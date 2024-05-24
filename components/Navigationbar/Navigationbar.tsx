@@ -14,6 +14,7 @@ import { ThemeSwitcher } from "../Button/ThemeSwitcher";
 import { UserDetail } from "../UserDetail/UserDetail";
 import Logout from "../Logout/Logout";
 import Settings from "../Settings/Settings";
+import UserNameSet from "../UserNameSet/UserNameSet";
 
 export function Navigationbar() {
 	const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -42,6 +43,9 @@ export function Navigationbar() {
 						ナイトモード：
 						<ThemeSwitcher />
 					</div>
+				</NavbarMenuItem>
+				<NavbarMenuItem>
+					<UserNameSet />
 				</NavbarMenuItem>
 				<NavbarMenuItem>
 					<Logout />

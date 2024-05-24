@@ -11,6 +11,7 @@ import {
 } from "@nextui-org/react";
 import { ThemeSwitcher } from "../Button/ThemeSwitcher";
 import Logout from "../Logout/Logout";
+import UserNameSet from "../UserNameSet/UserNameSet";
 
 export default function Settings({
 	children,
@@ -36,6 +37,7 @@ export default function Settings({
 									ナイトモード：
 									<ThemeSwitcher />
 								</div>
+								<UserNameSet />
 								<Logout />
 							</ModalBody>
 							<ModalFooter>{/* <p>Modal Footer</p> */}</ModalFooter>
