@@ -68,7 +68,7 @@ export default function Chart(dataList: { dataList: DataList[] | undefined }) {
 							>
 								<CartesianGrid strokeDasharray="3 3" />
 								<XAxis dataKey="name" />
-								<YAxis />
+								<YAxis unit={"円"} />
 								<Line
 									type="monotone"
 									dataKey="ガソリン価格"
@@ -98,7 +98,7 @@ export default function Chart(dataList: { dataList: DataList[] | undefined }) {
 							>
 								<CartesianGrid strokeDasharray="3 3" />
 								<XAxis dataKey="name" />
-								<YAxis />
+								<YAxis unit={"Km"} />
 								<Line
 									type="monotone"
 									dataKey="給油までの走行距離"
@@ -128,7 +128,7 @@ export default function Chart(dataList: { dataList: DataList[] | undefined }) {
 							>
 								<CartesianGrid strokeDasharray="3 3" />
 								<XAxis dataKey="name" />
-								<YAxis />
+								<YAxis unit={"L"} />
 								<Line
 									type="monotone"
 									dataKey="給油量"

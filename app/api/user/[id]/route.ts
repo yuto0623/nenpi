@@ -28,3 +28,23 @@ export async function GET(req: NextRequest, res: NextResponse,
     await prisma.$disconnect();
   }
 }
+
+
+export async function PATCH(req: NextRequest,
+  { params }: { params: { id: string } }
+) {
+		// console.log(params.id)
+    const body = await req.json();
+		// console.log(body)
+
+    await prisma.user.update({
+      where: {
+        id: params.id
+      },
+      data: {
+        name: body.name
+      }
+    })
+
+    return new Response(JSON.stringify({status: "success"}))
+	}
