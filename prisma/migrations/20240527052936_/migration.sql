@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "DataList" ADD COLUMN     "latitude" INTEGER NOT NULL DEFAULT 0,
+ADD COLUMN     "longitude" INTEGER NOT NULL DEFAULT 0;

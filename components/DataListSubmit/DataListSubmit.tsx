@@ -11,12 +11,12 @@ import {
 	ModalBody,
 	ModalFooter,
 	useDisclosure,
+	Checkbox,
 } from "@nextui-org/react";
 import type { DataList, Settings, UserData } from "@prisma/client";
 import axios from "axios";
 import { createRef, useRef, useState, type Dispatch } from "react";
 import AddIcon from "@mui/icons-material/Add";
-import { CheckBox } from "@mui/icons-material";
 
 export default function DataListSubmit({
 	userData,
@@ -32,15 +32,29 @@ export default function DataListSubmit({
 	const { isOpen, onOpen, onOpenChange } = useDisclosure();
 	const processing = useRef(false);
 	const [isDisabled, setDisabled] = useState(false);
+	const [isLocationEnabled, setLocationEnabled] = useState(false);
+	const [Location, setLocation] = useState<GeolocationPosition>();
 
 	const handleDisabled = (e: boolean) => {
 		setDisabled(e);
-		console.log(e);
+		// console.log(e);
+	};
+
+	const locationHandler = async (e: React.ChangeEvent<HTMLInputElement>) => {
+		setLocationEnabled(e.target.checked);
+		await navigator.geolocation.getCurrentPosition(
+			(position) => {
+				setLocation(position);
+			},
+			null,
+			{ enableHighAccuracy: true },
+		);
+		// console.log(Location);
+		// console.log(e.target.checked);
 	};
 
 	const onSubmit = async (formData: FormData) => {
 		if (!userData) return;
-
 		if (processing.current) return;
 		processing.current = true;
 		handleDisabled(true);
@@ -51,6 +65,7 @@ export default function DataListSubmit({
 			// gasPrice: Number(formData.get("gasPrice")),
 			// gas: Number(formData.get("gas")),
 		});
+
 		const mileage = Number(formData.get("mileage"));
 		const putBody = {
 			mileage: mileage,
@@ -61,6 +76,13 @@ export default function DataListSubmit({
 			// 	: 0,
 			gasPrice: formData.get("gasPrice"),
 			gas: formData.get("gas"),
+			...(isLocationEnabled &&
+				Location && {
+					location: {
+						latitude: Location.coords.latitude,
+						longitude: Location.coords.longitude,
+					},
+				}),
 		};
 		const response = await axios.post(
 			`/api/dataList/${userData.userId}`,
@@ -150,7 +172,13 @@ export default function DataListSubmit({
 										type="number"
 										max={2147483647}
 									/>
-									<CheckBox />
+									<Checkbox
+										onChange={(e) => {
+											locationHandler(e);
+										}}
+									>
+										位置情報を登録する
+									</Checkbox>
 									<Button
 										type="submit"
 										radius="full"

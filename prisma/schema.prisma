@@ -87,6 +87,8 @@ model DataList {
   gas            Int       @default(0)
   gasPrice       Int       @default(0)
   fuelEfficiency Int       @default(0)
+  latitude       Float?
+  longitude      Float?
   userData       UserData? @relation(fields: [userDataId], references: [id])
   userDataId     Int?
 }

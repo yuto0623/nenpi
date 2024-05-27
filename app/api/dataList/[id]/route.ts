@@ -21,7 +21,8 @@ export async function POST(
       // mileageIncrement: Number(body.mileageIncrement),
       fuelEfficiency: Number(body.mileage) / Number(body.gas),
       gasPrice: Number(body.gasPrice),
-      gas: Number(body.gas)
+      gas: Number(body.gas),
+      ...(body.location && { latitude: body.location.latitude, longitude: body.location.longitude }),
     }
   })
 
@@ -37,7 +38,9 @@ export async function POST(
             // mileageIncrement: Number(body.mileageIncrement),
             fuelEfficiency: Number(body.mileage) / Number(body.gas),
             gasPrice: Number(body.gasPrice),
-            gas: Number(body.gas)
+            gas: Number(body.gas),
+            ...(body.Location && { latitude: body.Location.latitude, longitude: body.Location.longitude }),
+
           }
         }
       },
