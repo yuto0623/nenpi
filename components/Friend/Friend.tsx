@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { User } from "@nextui-org/user";
 import type { Prisma, User as PrismaUser } from "@prisma/client";
 import { Listbox, ListboxItem, Spinner } from "@nextui-org/react";
+import FriendAddButton from "./FriendAddButton/FriendAddButton";
 
 export type UserWithData = Prisma.UserGetPayload<{
 	include: { userData: { include: { dataList: true } } };
@@ -18,23 +19,26 @@ export default function Friend(allUser: {
 			</div>
 		);
 	return (
-		<Listbox items={allUser.allUser}>
-			{(user) => (
-				<ListboxItem key={user.id}>
-					<User
-						key={user.id}
-						name={user.name}
-						description={`走行距離：${
-							user.userData[0].dataList[0]
-								? user.userData[0].dataList[0].mileage
-								: 0
-						}Km`}
-						avatarProps={{
-							src: `${user.image}`,
-						}}
-					/>
-				</ListboxItem>
-			)}
-		</Listbox>
+		<>
+			<Listbox items={allUser.allUser}>
+				{(user) => (
+					<ListboxItem key={user.id}>
+						<User
+							key={user.id}
+							name={user.name}
+							description={`走行距離：${
+								user.userData[0].dataList[0]
+									? user.userData[0].dataList[0].mileage
+									: 0
+							}Km`}
+							avatarProps={{
+								src: `${user.image}`,
+							}}
+						/>
+					</ListboxItem>
+				)}
+			</Listbox>
+			<FriendAddButton />
+		</>
 	);
 }
