@@ -229,6 +229,32 @@ export default function History({ dataList, setDataList }: HistoryProps) {
 										</span>
 										<span>{data.gas}L</span>
 									</div>
+									{data.latitude && data.longitude && (
+										<>
+											<div className="flex flex-row justify-between">
+												<span className="flex flex-row items-center gap-1">
+													<Avatar
+														icon={<LocalGasStationIcon className={"p-1"} />}
+														size="sm"
+														className="w-6 h-6 text-tiny"
+													/>
+													緯度：
+												</span>
+												<span>{data.latitude}</span>
+											</div>
+											<div className="flex flex-row justify-between">
+												<span className="flex flex-row items-center gap-1">
+													<Avatar
+														icon={<LocalGasStationIcon className={"p-1"} />}
+														size="sm"
+														className="w-6 h-6 text-tiny"
+													/>
+													経度：
+												</span>
+												<span>{data.longitude}</span>
+											</div>
+										</>
+									)}
 								</CardBody>
 							</Card>
 						))}
