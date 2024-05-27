@@ -24,6 +24,7 @@ import { Chip } from "@nextui-org/react";
 import SpeedIcon from "@mui/icons-material/Speed";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import CurrencyYenIcon from "@mui/icons-material/CurrencyYen";
+import GoogleMap from "../GoogleMap/GoogleMap";
 
 interface HistoryProps {
 	dataList: DataList[] | undefined;
@@ -231,7 +232,7 @@ export default function History({ dataList, setDataList }: HistoryProps) {
 									</div>
 									{data.latitude && data.longitude && (
 										<>
-											<div className="flex flex-row justify-between">
+											{/* <div className="flex flex-row justify-between">
 												<span className="flex flex-row items-center gap-1">
 													<Avatar
 														icon={<LocalGasStationIcon className={"p-1"} />}
@@ -252,7 +253,10 @@ export default function History({ dataList, setDataList }: HistoryProps) {
 													経度：
 												</span>
 												<span>{data.longitude}</span>
-											</div>
+											</div> */}
+											<GoogleMap
+												center={{ lat: data.latitude, lng: data.longitude }}
+											/>
 										</>
 									)}
 								</CardBody>
