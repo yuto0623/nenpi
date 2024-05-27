@@ -152,7 +152,7 @@ export default function DataListSubmit({
 										min={
 											dataList
 												? dataList.length > 0
-													? dataList[0].mileage.toString()
+													? (dataList[0].mileage + 1).toString()
 													: 0
 												: 0
 										}
