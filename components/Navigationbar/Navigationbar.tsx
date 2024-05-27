@@ -15,6 +15,7 @@ import { UserDetail } from "../UserDetail/UserDetail";
 import Logout from "../Logout/Logout";
 import Settings from "../Settings/Settings";
 import UserNameSet from "../UserNameSet/UserNameSet";
+import Notification from "../Notification/Notification";
 
 export function Navigationbar() {
 	const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -26,14 +27,16 @@ export function Navigationbar() {
 				<NavbarBrand>
 					<p className="font-bold text-inherit">nenpi!</p>
 				</NavbarBrand>
+				<Notification />
 			</NavbarContent>
 			<NavbarContent className="hidden sm:flex">
-				<NavbarBrand>
-					<p className="font-bold text-inherit">nenpi!</p>
-				</NavbarBrand>
 				<Settings>
 					<UserDetail />
 				</Settings>
+				<NavbarBrand>
+					<p className="font-bold text-inherit">nenpi!</p>
+				</NavbarBrand>
+				<Notification />
 			</NavbarContent>
 			<NavbarMenu>
 				<UserDetail />

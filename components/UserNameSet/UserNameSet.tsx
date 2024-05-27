@@ -29,7 +29,11 @@ export default function UserNameSet() {
 
 	return (
 		<>
-			<p onKeyDown={onOpen} onClick={onOpen} className="cursor-pointer m-0">
+			<p
+				onKeyDown={onOpen}
+				onClick={onOpen}
+				className="cursor-pointer m-0 text-sm"
+			>
 				ユーザー名の変更
 			</p>
 			<Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="center">
